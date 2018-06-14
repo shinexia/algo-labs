@@ -1,5 +1,7 @@
 package _001_two_sum
 
+// https://leetcode.com/problems/two-sum/description/
+
 // Time : O(n^2)
 // Space: O(1)
 func twoSum(nums []int, target int) (out []int) {

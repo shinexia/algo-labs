@@ -1,4 +1,6 @@
-package _003_longest_substring_without_repeating_characters
+package _003_length_of_longest_substring
+
+// https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 
 // Time : O(n)
 // Space: O(k), k = max

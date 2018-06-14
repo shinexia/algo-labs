@@ -1,4 +1,4 @@
-package _003_longest_substring_without_repeating_characters
+package _003_length_of_longest_substring
 
 import (
 	"testing"
