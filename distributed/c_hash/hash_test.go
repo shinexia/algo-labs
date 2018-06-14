@@ -13,14 +13,14 @@ func TestConsistentHash_AddNode(t *testing.T) {
 	for i := 0; i<len(nodes); i++ {
 		nodes[i] = NewNode(fmt.Sprintf("Node%02d", i))
 	}
-	c.AddNode(nodes...)
+	c.Add(nodes...)
 
 	{
 		servers := make(map[string]int)
 		for i := 0; i < 100000; i++ {
 			n := rand.Intn(1000000000)
 			key := fmt.Sprintf("%d", n)
-			server := c.PickNode(key)
+			server := c.Pick(key)
 			if server == nil {
 				log.Fatalln("server is nil")
 			}
@@ -38,7 +38,7 @@ func TestConsistentHash_AddNode(t *testing.T) {
 		for i := 0; i < 1000000; i++ {
 			n := rand.Intn(1000000000)
 			key := fmt.Sprintf("%d", n)
-			server := c.PickNodeN(key, 2)
+			server := c.PickN(key, 2)
 			for _, s := range server {
 				if s == nil {
 					log.Fatalln("name is nil", server)

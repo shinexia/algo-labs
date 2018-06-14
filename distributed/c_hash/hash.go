@@ -55,7 +55,7 @@ func (c *ConsistentHash) String() string {
 		c.replica, len(c.sortedHashes), len(c.circle), len(c.members), c.count)
 }
 
-func (c *ConsistentHash) AddNode(nodes... Node) {
+func (c *ConsistentHash) Add(nodes... Node) {
 	c.Lock()
 	defer c.Unlock()
 	for _, node := range nodes {
@@ -70,7 +70,7 @@ func (c *ConsistentHash) AddNode(nodes... Node) {
 	c.updateSortedHashes()
 }
 
-func (c *ConsistentHash) RemoveNode(nodes... Node) {
+func (c *ConsistentHash) Remove(nodes... Node) {
 	c.Lock()
 	defer c.Unlock()
 	for _, node := range nodes {
@@ -85,7 +85,7 @@ func (c *ConsistentHash) RemoveNode(nodes... Node) {
 	c.updateSortedHashes()
 }
 
-func (c *ConsistentHash) PickNode(key string) Node {
+func (c *ConsistentHash) Pick(key string) Node {
 	c.RLock()
 	defer c.RUnlock()
 	if c.count == 0 {
@@ -108,7 +108,7 @@ func (c *ConsistentHash) search(h uint32) (i int) {
 	return
 }
 
-func (c *ConsistentHash) PickNodeN(key string, n int) (res []Node) {
+func (c *ConsistentHash) PickN(key string, n int) (res []Node) {
 	c.RLock()
 	defer c.RUnlock()
 	if c.count == 0 {
