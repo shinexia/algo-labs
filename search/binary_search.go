@@ -5,10 +5,10 @@ func BinarySearch(arr []int, key int) int {
 }
 
 func binarySearch0(arr []int, low, high, key int) int {
-	if low > high {
+	mid := low + (high-low)/2
+	if mid >= len(arr) {
 		return -1
 	}
-	mid := low + (high-low)/2
 	mval := arr[mid]
 	if mval > key {
 		return binarySearch0(arr, low, mid-1, key)

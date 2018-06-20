@@ -43,5 +43,4 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) (out *ListNode) {
 			prev = cur
 		}
 	}
-	return
 }

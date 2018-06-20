@@ -2,56 +2,93 @@ package skiplist
 
 import (
 	"testing"
-	"log"
 	"fmt"
 )
 
-func TestNew(t *testing.T) {
+const (
+	op_nothing = iota
+	op_put
+	op_remove
+)
+
+type expect struct {
+	s     []pair // 链表全部的kv结构
+	r     interface{} // op操作的结果
+	key   interface{} // key
+	value interface{} // 上面的key对应的value应该与此相同
+}
+
+type pair struct {
+	key   interface{}
+	value interface{}
+}
+
+func listEq(s *SkipList, pairs []pair) (out bool) {
+	out = true
+	s.Inspect(func(i int, key Key, value Value) bool {
+		if i >= len(pairs) {
+			out = false
+			return false
+		}
+		p := pairs[i]
+		var k Key
+		if p.key != nil {
+			k = Int(p.key.(int))
+		}
+		if compareHelp(k, key) != 0 || p.value != value {
+			out = false
+			return false
+		}
+		return true
+	})
+	return
+}
+
+func TestSkipList(t *testing.T) {
+	tests := []struct {
+		op     int // 执行某种操作
+		key    interface{}
+		value  interface{}
+		expect expect
+	}{
+		{op: op_nothing, expect: expect{s: nil, key: nil, value: nil}},
+		{op: op_put, key: 0, value: 2, expect: expect{s: []pair{{0, 2}}, r: nil, key: 0, value: 2}},
+		{op: op_put, key: nil, value: 3, expect: expect{s: []pair{{0, 2}, {nil, 3}}, r: nil, key: nil, value: 3}},
+		{op: op_put, key: 0, value: 4, expect: expect{s: []pair{{0, 4}, {nil, 3}}, r: 2,  key: 0, value: 4}},
+		{op: op_nothing, expect: expect{s: []pair{{0, 4}, {nil, 3}}, key: 1, value: nil}},
+		{op: op_remove, key: 1, expect: expect{s: []pair{{0, 4}, {nil, 3}}, r: false, key: 1, value: nil}},
+		{op: op_remove, key: 0, expect: expect{s: []pair{{nil, 3}}, r: true, key: 0, value: nil}},
+		{op: op_remove, key: nil, expect: expect{s: []pair{}, r: true, key: nil, value: nil}},
+	}
+
 	s := New()
-	if a := s.Find(nil); a != nil {
-		t.Error("s[nil]=" + fmt.Sprint(a) + " should eq nil")
+	for _, test := range tests {
+		var tk Key
+		if test.key != nil {
+			tk = NewInt(test.key.(int))
+		}
+		var r interface{}
+		switch test.op {
+		case op_put:
+			r = s.Put(tk, test.value)
+		case op_remove:
+			r = s.Remove(tk)
+		case op_nothing:
+		default:
+			panic("invalid op type:" + fmt.Sprint(test.op))
+		}
+		if !listEq(s, test.expect.s) {
+			t.Errorf("s=%v, expect.s=%v", s, test.expect.s)
+		}
+		if r != test.expect.r {
+			t.Errorf("s=%v, r=%v, expect.r=%v", s, r, test.expect.r)
+		}
+		var k Key
+		if test.expect.key != nil {
+			k = NewInt(test.expect.key.(int))
+		}
+		if r := s.Find(k); r != test.expect.value {
+			t.Errorf("s=%v, out=%v, expect.key=%v, expect.value=%v", s, r, test.expect.key, test.expect.value)
+		}
 	}
-
-	s.Put(Int(0), 2)
-	log.Println(s.String())
-	if a := s.Find(Int(0)); a != 2 {
-		t.Error("s[0]=" + fmt.Sprint(a) + " should eq 2")
-	}
-
-	s.Put(nil, 3)
-	log.Println(s.String())
-	if a := s.Find(nil); a != 3 {
-		t.Error("s[nil]=" + fmt.Sprint(a) + " should eq 3")
-	}
-
-	s.Put(Int(0), 4)
-	log.Println(s.String())
-	if a := s.Find(Int(0)); a != 4 {
-		t.Error("s[0]=" + fmt.Sprint(a) + " should eq 4")
-	}
-
-	if a := s.Find(Int(1)); a != nil {
-		t.Error("s[1]=" + fmt.Sprint(a) + " should eq nil")
-	}
-
-	s.Remove(Int(0))
-	log.Println(s.String())
-	if a := s.Find(Int(0)); a != nil {
-		t.Error("s[0]=" + fmt.Sprint(a) + " should eq nil")
-	}
-
-	s.Remove(nil)
-	log.Println(s.String())
-	if a := s.Find(Int(0)); a != nil {
-		t.Error("s[nil]=" + fmt.Sprint(a) + " should eq nil")
-	}
-}
-
-func TestInt_Compare(t *testing.T) {
-	var b *Int = nil
-	log.Println(doCompare(nil, b))
-}
-
-func doCompare(a, b Key) int {
-	return a.Compare(b)
 }

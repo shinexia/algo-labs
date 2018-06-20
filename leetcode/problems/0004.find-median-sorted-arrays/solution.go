@@ -3,7 +3,7 @@ package _004_find_median_sorted_arrays
 // https://leetcode.com/problems/median-of-two-sorted-arrays/description/
 
 // Time: O(log(m + n))
-func findMedianSortedArrays(A []int, B []int) float64 {
+func findMedianSortedArrays(A []int, B []int) (out float64) {
 	m := len(A)
 	n := len(B)
 	if m > n {
@@ -47,10 +47,11 @@ func findMedianSortedArrays(A []int, B []int) float64 {
 			} else {
 				minRight = min(B[j], A[i])
 			}
-			return float64(maxLeft+minRight) * 0.5
+			out = float64(maxLeft+minRight) * 0.5
+			break // to make coverage test happy, break to the last return statement
 		}
 	}
-	return 0.0
+	return
 }
 
 func max(a, b int) int {
@@ -61,8 +62,8 @@ func max(a, b int) int {
 }
 
 func min(a, b int) int {
-	if a > b {
-		return b
+	if a < b {
+		return a
 	}
-	return a
+	return b
 }

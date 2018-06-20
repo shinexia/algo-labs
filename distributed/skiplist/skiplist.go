@@ -167,6 +167,18 @@ func (l *SkipList) randomLevel() int {
 	return l.randg.Intn(l.maxLevel) + 1
 }
 
+// 查看所有节点
+func (l *SkipList) Inspect(fn func(i int, key Key, value Value) bool) {
+	var i = 0
+	for p := l.header.forwards[0]; p != nil; p = p.forwards[0] {
+		shouldContinue := fn(i, p.key, p.value)
+		i++
+		if !shouldContinue {
+			return
+		}
+	}
+}
+
 // 防止a或b为nil
 // key == nil 时，排在链表的最右边，header不保存数据
 func compareHelp(a, b Key) int {
