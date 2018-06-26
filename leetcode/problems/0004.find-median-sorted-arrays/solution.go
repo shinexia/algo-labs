@@ -48,7 +48,7 @@ func findMedianSortedArrays(A []int, B []int) (out float64) {
 				minRight = min(B[j], A[i])
 			}
 			out = float64(maxLeft+minRight) * 0.5
-			break // to make coverage test happy, break to the last return statement
+			return
 		}
 	}
 	return
