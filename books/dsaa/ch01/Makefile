@@ -8,15 +8,16 @@ LDFLAGS=-L/usr/local/lib -lgtest -lgtest_main -L../../../build -lmylib
 TESTS=$(wildcard *_test.cc)
 TARGETS=$(TESTS:.cc=)
 RUNS=$(addprefix run_, $(TARGETS))
+TEST_ARGS=
 
 .PHONY: test $(RUNS)
 test: $(RUNS)
 
-run_max_subsequence_sum_test: max_subsequence_sum_test
-	./$<
-
-%_test: %_test.cc %.o
+%_test: %_test.o %.o test_main.cc
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^
+
+%.o: %cc
+	$(CXX) $(CXXFLAGS) -c $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^
@@ -24,3 +25,10 @@ run_max_subsequence_sum_test: max_subsequence_sum_test
 .PHONY: clean
 clean:
 	rm -fr *_test *.dSYM *.o $(TARGETS)
+
+run_max_subsequence_sum_test: max_subsequence_sum_test
+	./$< $(TEST_ARGS)
+
+run_binary_search_test: binary_search_test
+	./$< $(TEST_ARGS)
+

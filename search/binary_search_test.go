@@ -7,9 +7,9 @@ func TestBinarySearch(t *testing.T) {
 		a      []int
 		key    int
 		expect int
-	} {
-		{a: nil, key: 3, expect: -1},
-		{a: []int{1, 2}, key: 3, expect: -1},
+	}{
+		{a: nil, key: 3, expect: NotFound},
+		{a: []int{1, 2}, key: 3, expect: NotFound},
 		{a: []int{1, 2, 3, 4, 5}, key: 3, expect: 2},
 		{a: []int{1, 2, 3, 4, 5}, key: 4, expect: 3},
 	}

@@ -1,6 +1,5 @@
 #include "myutil.h"
 #include "gtest/gtest.h"
-#include <sstream>
 
 extern "C" {
   extern int MaxSubsequenceSum(const int A[], int N);
@@ -34,9 +33,4 @@ TEST(TestMaxSubsequenceSum, simple) {
     EXPECT_EQ(MaxSubsequenceSum(c->a, c->n), c->expect) << "a=" << my::stringify(c->a, c->n);
     ;
   }
-}
-
-int main(int argc, char **argv) {
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
 }
