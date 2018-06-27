@@ -6,10 +6,14 @@ const (
 
 func BinarySearch(A []int, x int) int {
 	var (
+		N    = len(A)
 		low  = 0
-		high = len(A) - 1
+		high = N - 1
 		mid  int
 	)
+	if N > 0 && (x < A[low] || x > A[high]) {
+		return NotFound
+	}
 	for low <= high {
 		mid = (low + high) / 2
 		m := A[mid]
