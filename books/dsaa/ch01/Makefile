@@ -32,3 +32,5 @@ run_max_subsequence_sum_test: max_subsequence_sum_test
 run_binary_search_test: binary_search_test
 	./$< $(TEST_ARGS)
 
+run_gcd_test: gcd_test
+	./$< $(TEST_ARGS)
