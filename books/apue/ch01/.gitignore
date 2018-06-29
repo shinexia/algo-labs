@@ -1,0 +1,7 @@
+
+copy 
+copy_nobuf 
+getgid 
+getpid 
+ls 
+shell

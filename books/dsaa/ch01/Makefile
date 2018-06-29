@@ -34,3 +34,6 @@ run_binary_search_test: binary_search_test
 
 run_gcd_test: gcd_test
 	./$< $(TEST_ARGS)
+
+run_pow_test: pow_test
+	./$< $(TEST_ARGS)
