@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 #define FILE_MODE (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
 
@@ -23,7 +24,7 @@ int main() {
         buf0[i] = buf1[i];
     }
     for (int i = N1; i < N; i++) {
-        buf0[i] = 'o';
+        buf0[i] = '.';
     }
     if (write(fd, buf0, N) != N) {
         fprintf(stderr, "buf0 write error %s\n", strerror(errno));
