@@ -1,6 +1,6 @@
 // Murmur3 32bit hash function based on
 // http://en.wikipedia.org/wiki/MurmurHash
-package c_hash
+package consistent_hash
 
 const (
 	c1 = 0xcc9e2d51
