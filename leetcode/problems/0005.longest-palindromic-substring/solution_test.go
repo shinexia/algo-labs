@@ -41,9 +41,9 @@ func TestLongestPalindrome(t *testing.T) {
 		name string
 		fn   func(s string) string
 	}{
-		{name: "longestPalindrome1", fn: longestPalindrome1},
-		{name: "longestPalindrome2", fn: longestPalindrome2},
-		{name: "longestPalindrome3", fn: longestPalindrome3},
+		{name: "BruteForce", fn: BruteForce},
+		{name: "ExpandAroundCenter", fn: ExpandAroundCenter},
+		{name: "ManchersAlgorithm", fn: ManchersAlgorithm},
 	}
 	for _, f := range funcs {
 		for _, c := range cases {
