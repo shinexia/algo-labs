@@ -1,22 +1,12 @@
 # algorithm-labs
 
-algorithm labs
+Most used programming languages: go, c, c++, haskell, racket
 
-## Go Tests Coverage
+## Prerequisites
 
-```bash
-go test -cover
-```
+### install gtest
 
-or
-
-```bash
-go tool cover -html=cover.out
-```
-
-## C/C++
-
-on Mac, install `gtest`
+on Mac
 
 ```bash
 git clone https://github.com/google/googletest.git
@@ -26,9 +16,23 @@ cp -a include/gtest /usr/local/include
 cp -a libgtest.dylib libgtest_main.dylib /usr/local/lib
 ```
 
-build `mylib`
+### build mylib@cpp
 
 ```bash
 cd cpp
 make
+```
+
+## Tips
+
+### Go Tests Coverage
+
+```bash
+go test -cover
+```
+
+or
+
+```bash
+go tool cover -html=cover.out
 ```

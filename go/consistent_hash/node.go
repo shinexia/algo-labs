@@ -1,4 +1,4 @@
-package c_hash
+package consistent_hash
 
 
 type Node interface {
