@@ -3,5 +3,5 @@ TARGETS=HelloWorld
 all: $(TARGETS)
 
 %: %.hs
-	stack test --ta '-m "/$@/"'
+	stack test --ta '-m "$@"'
 
