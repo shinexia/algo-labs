@@ -8,7 +8,7 @@ import (
 )
 
 func TestConsistentHash_AddNode(t *testing.T) {
-	c := New(4)
+	c := New(255)
 	nodes := make([]Node, 10)
 	for i := 0; i<len(nodes); i++ {
 		nodes[i] = NewNode(fmt.Sprintf("Node%02d", i))
@@ -17,7 +17,7 @@ func TestConsistentHash_AddNode(t *testing.T) {
 
 	{
 		servers := make(map[string]int)
-		for i := 0; i < 100000; i++ {
+		for i := 0; i < 10000; i++ {
 			n := rand.Intn(1000000000)
 			key := fmt.Sprintf("%d", n)
 			server := c.Pick(key)
@@ -30,12 +30,20 @@ func TestConsistentHash_AddNode(t *testing.T) {
 				servers[server.Id()] = 1
 			}
 		}
-		log.Printf("%v", servers)
+		total := 0.0
+		for _, s := range servers {
+			total += float64(s)
+		}
+		for i := 0; i<len(nodes); i++ {
+			key := nodes[i].Id()
+			count := servers[key]
+			log.Printf("%v - %.3f of %.2f", key, float64(count) / total, 1.0 / float64(len(nodes)))
+		}
 	}
 
 	{
 		servers := make(map[string]int32)
-		for i := 0; i < 1000000; i++ {
+		for i := 0; i < 10000; i++ {
 			n := rand.Intn(1000000000)
 			key := fmt.Sprintf("%d", n)
 			server := c.PickN(key, 2)
