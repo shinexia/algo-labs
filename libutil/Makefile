@@ -5,19 +5,28 @@ CFLAGS=-fPIC -g -O2 --std=c11 -I/usr/local/include -I./include
 CXXFLAGS=-fPIC -g -O2 --std=c++11 -I/usr/local/include -I./include
 TEST_LDFLAGS=-L/usr/local/lib -lgtest -lgtest_main
 
-OUT_DIR=../build
 SRC_DIR=src
+DIST_DIR=lib
 
 SRC_CPP=$(wildcard src/*.cc)
-OUT_OBJ=$(patsubst $(SRC_DIR)/%,$(OUT_DIR)/%,$(SRC_CPP:.cc=.o))
+OUT_OBJ=$(SRC_CPP:.cc=.o)
 
-$(OUT_DIR)/libmylib.a: $(OUT_OBJ)
-	$(shell mkdir -p $(OUT_DIR))
+$(DIST_DIR)/libutil.so: $(OUT_OBJ) | $(DIST_DIR)
 	ar rcs $@ $^
 
-$(OUT_DIR)/%.o: $(SRC_DIR)/%.cc
+$(BUILD_DIR)/%.o: %.cc | $(BUILD_DIR)/src
 	$(CXX) $(CXXFLAGS) -c $^ -o $@
+
+$(DIST_DIR):
+	$(shell mkdir -p $(DIST_DIR))
+
+test:
+	echo "not implemented"
 
 .PHONY: clean
 clean:
-	rm -fr *_test *.dSYM *.o $(OUT_DIR)/*
+	rm -fr src/*.o src/*.dSYM
+
+.PHONY: distclean
+distclean:
+	rm -fr $(DIST_DIR)/*

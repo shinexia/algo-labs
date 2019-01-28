@@ -1,6 +1,6 @@
 # algorithm-labs
 
-Most used programming languages: go, c, c++, haskell, racket
+Most used programming languages: go, c/c++, haskell
 
 ## Prerequisites
 
@@ -16,10 +16,10 @@ cp -a include/gtest /usr/local/include
 cp -a libgtest.dylib libgtest_main.dylib /usr/local/lib
 ```
 
-### build mylib@cpp
+### build libutil
 
 ```bash
-cd cpp
+cd libutil
 make
 ```
 

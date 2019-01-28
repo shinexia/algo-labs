@@ -1,8 +1,8 @@
+#include "pow.h"
+
+#include "util.h"
 #include "gtest/gtest.h"
 
-extern "C" {
-  extern unsigned int Pow(unsigned int X, unsigned int n);
-}
 
 typedef struct Case_ {
   int X;

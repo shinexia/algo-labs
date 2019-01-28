@@ -1,9 +1,8 @@
-#include "myutil.h"
+#include "max_subsequence_sum.h"
+
+#include "util.h"
 #include "gtest/gtest.h"
 
-extern "C" {
-  extern int MaxSubsequenceSum(const int A[], int N);
-}
 
 typedef struct Case {
   int a[10];
@@ -30,7 +29,7 @@ TEST(TestMaxSubsequenceSum, simple) {
   };
   for (int i=0; i<sizeof(cases) / sizeof(cases[0]); i++) {
     const Case* c = &(cases[i]);
-    EXPECT_EQ(MaxSubsequenceSum(c->a, c->n), c->expect) << "a=" << my::stringify(c->a, c->n);
+    EXPECT_EQ(MaxSubsequenceSum(c->a, c->n), c->expect) << "a=" << util::stringify(c->a, c->n);
     ;
   }
 }

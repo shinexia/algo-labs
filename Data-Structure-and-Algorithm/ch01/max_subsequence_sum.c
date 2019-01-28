@@ -1,3 +1,4 @@
+#include "max_subsequence_sum.h"
 
 int MaxSubsequenceSum(const int A[], int N) {
   int ThisSum = 0, MaxSum = 0;
