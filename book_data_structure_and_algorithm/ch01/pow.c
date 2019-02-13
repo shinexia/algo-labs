@@ -1,7 +1,7 @@
 #include "pow.h"
 
 /* Tail Recursion */
-static unsigned int Pow_TR0(unsigned int X, unsigned int n, unsigned int acc) {
+static Pow_Type Pow_TR0(Pow_Type X, Pow_Type n, Pow_Type acc) {
   if (0 == n) {
     return acc;
   } else if ( 1 == n) {
@@ -13,6 +13,6 @@ static unsigned int Pow_TR0(unsigned int X, unsigned int n, unsigned int acc) {
   }
 }
 
-unsigned int Pow(unsigned int X, unsigned int n) {
+Pow_Type Pow(Pow_Type X, Pow_Type n) {
   return Pow_TR0(X, n, 1);
 }

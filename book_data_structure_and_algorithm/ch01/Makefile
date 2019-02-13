@@ -1,10 +1,10 @@
-CC=gcc
-CXX=g++
 
-MYUTIL_DIR=../../libutil
-CFLAGS=-fPIC -g -O2 --std=c11 -I/usr/local/include -I.
-CXXFLAGS=-fPIC -g -O2 --std=c++11 -I/usr/local/include -I. -I$(MYUTIL_DIR)/include
-LDFLAGS=-L/usr/local/lib -lgtest -lgtest_main -L$(MYUTIL_DIR)/lib -lutil
+EXT_DIR = ../../build
+
+
+CXXFLAGS += -g -Wall -Wextra -std=c++11 -pthread
+
+LDFLAGS  += -I$(EXT_DIR)/include -L$(EXT_DIR)/lib -Wl,-rpath,$(EXT_DIR)/lib -lmyutil -lgtest -lgtest_main
 
 TESTS=$(wildcard *_test.cc)
 TARGETS=$(TESTS:.cc=)
@@ -14,11 +14,8 @@ TEST_ARGS=
 .PHONY: test $(RUNS)
 test: $(RUNS)
 
-%_test: %_test.o %.o test_main.cc
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^
-
-%.o: %.cc
-	$(CXX) $(CXXFLAGS) -c $^
+%_test: %_test.cc %.o
+	g++ $^ -o $@ $(LDFLAGS) $(CXXFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^

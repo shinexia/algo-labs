@@ -1,26 +1,23 @@
 # algorithm-labs
 
-Most used programming languages: go, c/c++, haskell
+Most used: go and c++
 
 ## Prerequisites
 
-### install gtest
-
-on Mac
-
 ```bash
-git clone https://github.com/google/googletest.git
-cd googletest/googletest
-cmake cmake -DBUILD_SHARED_LIBS=ON .
-cp -a include/gtest /usr/local/include
-cp -a libgtest.dylib libgtest_main.dylib /usr/local/lib
+git submodule update --init
 ```
 
-### build libutil
+### build gtest
 
 ```bash
-cd libutil
-make
+./build-gtest.sh
+```
+
+### build myutil
+
+```bash
+./build-myutil.sh
 ```
 
 ## Tips

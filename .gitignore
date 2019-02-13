@@ -16,3 +16,8 @@
 cover.out
 *.dSYM
 *.log
+*.o
+*.o2
+*.o3
+
+/build
