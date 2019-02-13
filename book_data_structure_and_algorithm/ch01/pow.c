@@ -1,7 +1,7 @@
 #include "pow.h"
 
 /* Tail Recursion */
-static Pow_Type Pow_TR0(Pow_Type X, Pow_Type n, Pow_Type acc) {
+static ElementType Pow_TR0(ElementType X, ElementType n, ElementType acc) {
   if (0 == n) {
     return acc;
   } else if ( 1 == n) {
@@ -13,6 +13,6 @@ static Pow_Type Pow_TR0(Pow_Type X, Pow_Type n, Pow_Type acc) {
   }
 }
 
-Pow_Type Pow(Pow_Type X, Pow_Type n) {
+ElementType Pow(ElementType X, ElementType n) {
   return Pow_TR0(X, n, 1);
 }

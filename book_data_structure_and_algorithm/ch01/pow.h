@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-typedef unsigned int Pow_Type;
+typedef unsigned int ElementType;
 
-Pow_Type Pow(Pow_Type X, Pow_Type n);
+ElementType Pow(ElementType X, ElementType n);
 
 #ifdef __cplusplus
 }

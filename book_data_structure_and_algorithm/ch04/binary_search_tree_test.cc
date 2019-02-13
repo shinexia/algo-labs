@@ -1,5 +1,5 @@
 #include "binary_search_tree.h"
 
-#include "myutil.h"
+#include "mylib.h"
 #include "gtest/gtest.h"
 

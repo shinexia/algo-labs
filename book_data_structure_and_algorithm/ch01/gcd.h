@@ -5,7 +5,9 @@
 extern "C" {
 #endif
 
-unsigned int GCD(unsigned int M, unsigned int N);
+typedef unsigned int ElementType;
+
+ElementType GCD(ElementType M, ElementType N);
 
 #ifdef __cplusplus
 }

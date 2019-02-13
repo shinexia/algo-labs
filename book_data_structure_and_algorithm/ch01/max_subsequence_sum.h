@@ -5,7 +5,9 @@
 extern "C" {
 #endif
 
-int MaxSubsequenceSum(const int A[], int N);
+typedef int ElementType;
+
+ElementType MaxSubsequenceSum(const ElementType A[], ElementType N);
 
 #ifdef __cplusplus
 }

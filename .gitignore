@@ -21,3 +21,4 @@ cover.out
 *.o3
 
 /build
+cmake-build-debug

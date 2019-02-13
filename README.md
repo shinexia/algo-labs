@@ -8,18 +8,6 @@ Most used: go and c++
 git submodule update --init
 ```
 
-### build gtest
-
-```bash
-./build-gtest.sh
-```
-
-### build myutil
-
-```bash
-./build-myutil.sh
-```
-
 ## Tips
 
 ### Go Tests Coverage
