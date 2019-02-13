@@ -1,6 +1,6 @@
 #include <string>
 
-namespace myutil {
+namespace mylib {
   std::string stringify(const int A[], int N);
-} // namespace myutil
+} // namespace mylib
 

@@ -27,6 +27,6 @@ TEST(TestBinarySearch, simple) {
     for (int i = 0; i < N; i++) {
         const Case *c = &(cases[i]);
         EXPECT_EQ(c->expect, BinarySearch(c->A, c->x, c->N))
-                            << myutil::stringify(c->A, c->N);
+                            << mylib::stringify(c->A, c->N);
     }
 }

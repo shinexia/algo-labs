@@ -1,7 +1,7 @@
 #include "mylib.h"
 #include <sstream>
 
-namespace myutil {
+namespace mylib {
 
 std::string stringify(const int A[], int N) {
   std::ostringstream oss;
@@ -16,4 +16,4 @@ std::string stringify(const int A[], int N) {
   return oss.str();
 }
 
-} // namespace myutil
+} // namespace mylib

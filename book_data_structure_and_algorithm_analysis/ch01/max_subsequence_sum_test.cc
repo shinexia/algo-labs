@@ -30,6 +30,6 @@ TEST(TestMaxSubsequenceSum, simple) {
     for (int i = 0; i < N; i++) {
         const Case *c = &(cases[i]);
         EXPECT_EQ(MaxSubsequenceSum(c->a, c->n), c->expect)
-                            << "a=" << myutil::stringify(c->a, c->n);;
+                            << "a=" << mylib::stringify(c->a, c->n);;
     }
 }

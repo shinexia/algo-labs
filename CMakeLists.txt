@@ -13,4 +13,5 @@ add_subdirectory(${MYLIB_ROOT_DIR})
 include_directories(${MYLIB_ROOT_DIR}/include)
 
 
-add_subdirectory(book_data_structure_and_algorithm)
+add_subdirectory(book_data_structure_and_algorithm_analysis)
+

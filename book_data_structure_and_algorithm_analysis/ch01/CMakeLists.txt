@@ -1,4 +1,3 @@
-project(ch01)
 
 set(DEPS mylib gtest gtest_main)
 
