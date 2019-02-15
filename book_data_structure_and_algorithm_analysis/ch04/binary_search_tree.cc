@@ -138,18 +138,17 @@ ElementType Retrieve(Position P) {
 #endif
 
 
-static void append_spaces(std::ostringstream &oss, int N) {
+static void appendSpaces(std::ostringstream &oss, int N) {
     for (int i = 0; i < N; i++) {
         oss << ' ';
     }
 }
 
 static void printSearchTree(std::ostringstream &oss, SearchTree T, int depth) {
+    appendSpaces(oss, depth * 2);
     if (T == nullptr) {
-        append_spaces(oss, depth * 2);
         oss << "NULL\n";
     } else {
-        append_spaces(oss, depth * 2);
         oss << T->Element << "\n";
         printSearchTree(oss, T->Left, depth + 1);
         printSearchTree(oss, T->Right, depth + 1);
