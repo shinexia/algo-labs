@@ -2,6 +2,7 @@
 #define BINARY_SEARCH_TREE_H
 
 #include <stdio.h>
+#include <sstream>
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,9 +19,7 @@ SearchTree NewTreeNode(ElementType X);
 int GetSearchTreeDepth(SearchTree T);
 int GetSearchTreeCount(SearchTree T);
 
-void FPrintSearchTree(FILE* fd, SearchTree T);
-
-void DeleteSearchTree(SearchTree T);
+SearchTree MakeEmpty(SearchTree T);
 SearchTree Insert(ElementType X, SearchTree T);
 SearchTree MakeSearchTree(const ElementType A[], int N);
 
@@ -34,5 +33,7 @@ ElementType Retrieve(Position P);
 #ifdef __cplusplus
 }
 #endif
+
+std::string ToString(SearchTree T);
 
 #endif  // BINARY_SEARCH_TREE_H

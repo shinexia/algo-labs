@@ -7,7 +7,7 @@ extern "C" {
 
 typedef unsigned int ElementType;
 
-ElementType Pow(ElementType X, ElementType n);
+ElementType Pow(ElementType X, int n);
 
 #ifdef __cplusplus
 }

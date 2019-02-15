@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 
 typedef struct Case_ {
-    int A[10];
+    ElementType A[10];
     int N;
     ElementType x;
     int expect;
@@ -22,7 +22,7 @@ TEST(TestBinarySearch, simple) {
                     {{-3, -2, -1, 0, 1, 2, 3, 4}, 8, -1, 2},
                     {{-3, -2, -1, 0, 1, 2, 3, 4}, 8, 1,  4}};
 
-    int N = sizeof(cases) / sizeof(cases[0]);
+    int N = sizeof(cases) / sizeof(Case);
 
     for (int i = 0; i < N; i++) {
         const Case *c = &(cases[i]);

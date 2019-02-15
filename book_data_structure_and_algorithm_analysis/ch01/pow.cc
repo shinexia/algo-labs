@@ -1,7 +1,11 @@
 #include "pow.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Tail Recursion */
-static ElementType Pow_TR0(ElementType X, ElementType n, ElementType acc) {
+static ElementType Pow_TR0(ElementType X, int n, ElementType acc) {
   if (0 == n) {
     return acc;
   } else if ( 1 == n) {
@@ -13,6 +17,11 @@ static ElementType Pow_TR0(ElementType X, ElementType n, ElementType acc) {
   }
 }
 
-ElementType Pow(ElementType X, ElementType n) {
+ElementType Pow(ElementType X, int n) {
   return Pow_TR0(X, n, 1);
 }
+
+
+#ifdef __cplusplus
+}
+#endif

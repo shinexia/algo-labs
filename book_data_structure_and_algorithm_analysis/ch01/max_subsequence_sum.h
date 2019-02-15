@@ -7,7 +7,7 @@ extern "C" {
 
 typedef int ElementType;
 
-ElementType MaxSubsequenceSum(const ElementType A[], ElementType N);
+ElementType MaxSubsequenceSum(const ElementType A[], int N);
 
 #ifdef __cplusplus
 }

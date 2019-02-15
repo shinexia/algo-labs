@@ -5,7 +5,7 @@
 
 typedef struct Case {
     ElementType a[10];
-    ElementType n;
+    int n;
     ElementType expect;
 } Case;
 
@@ -25,7 +25,7 @@ TEST(TestMaxSubsequenceSum, simple) {
                     {{-1, -2, 3},               3, 3},
                     {{-1, 3,  -1, -1, 2, 3, 4}, 7, 10}};
 
-    int N = sizeof(cases) / sizeof(cases[0]);
+    int N = sizeof(cases) / sizeof(Case);
 
     for (int i = 0; i < N; i++) {
         const Case *c = &(cases[i]);

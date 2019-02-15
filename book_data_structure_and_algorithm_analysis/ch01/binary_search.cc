@@ -1,5 +1,11 @@
 #include "binary_search.h"
 
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 int BinarySearch(const ElementType A[], ElementType x, int N) {
     int Low = 0, Mid, High = N - 1;
     if (N > 0 && (x < A[Low] || x > A[High])) {
@@ -19,3 +25,7 @@ int BinarySearch(const ElementType A[], ElementType x, int N) {
     }
     return NotFound;
 }
+
+#ifdef __cplusplus
+}
+#endif

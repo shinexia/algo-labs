@@ -5,11 +5,11 @@
 
 typedef struct Case_ {
     ElementType X;
-    ElementType n;
+    int n;
     ElementType expect;
 } Case;
 
-typedef ElementType (*fn_pow)(ElementType X, ElementType n);
+typedef ElementType (*fn_pow)(ElementType X, int n);
 
 typedef struct FN_ {
     fn_pow fn;
@@ -32,8 +32,8 @@ TEST(TestPow, simple) {
 
     FN funcs[] = {{Pow, "Pow"}};
 
-    int N = sizeof(cases) / sizeof(cases[0]);
-    int K = sizeof(funcs) / sizeof(funcs[0]);
+    int N = sizeof(cases) / sizeof(Case);
+    int K = sizeof(funcs) / sizeof(fn_pow);
 
     for (int j = 0; j < K; j++) {
         FN *f = &(funcs[j]);

@@ -1,5 +1,10 @@
 #include "gcd.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 ElementType GCD(ElementType M, ElementType N) {
     ElementType Rem;
     while (N > 0) {
@@ -10,3 +15,7 @@ ElementType GCD(ElementType M, ElementType N) {
     }
     return M;
 }
+
+#ifdef __cplusplus
+}
+#endif

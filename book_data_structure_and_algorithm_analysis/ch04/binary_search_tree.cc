@@ -14,7 +14,7 @@ struct TreeNode {
 };
 
 SearchTree NewTreeNode(ElementType X) {
-    SearchTree T = malloc(sizeof(struct TreeNode));
+    SearchTree T = (SearchTree) malloc(sizeof(struct TreeNode));
     if (T == NULL) {
         fprintf(stderr, "FATAL: Out of Memory");
         exit(1);
@@ -32,10 +32,10 @@ SearchTree MakeSearchTree(const ElementType A[], int N) {
     return T;
 }
 
-void DeleteSearchTree(SearchTree T) {
+SearchTree MakeEmpty(SearchTree T) {
     if (T != NULL) {
-        DeleteSearchTree(T->Left);
-        DeleteSearchTree(T->Right);
+        MakeEmpty(T->Left);
+        MakeEmpty(T->Right);
         free(T);
     }
 }
@@ -56,37 +56,6 @@ int GetSearchTreeCount(SearchTree T) {
     int l = GetSearchTreeCount(T->Left);
     int r = GetSearchTreeCount(T->Right);
     return 1 + l + r;
-}
-
-static char *newSpaces(int N) {
-    char *buf = (char *) malloc(N + 1);
-    if (buf == NULL) {
-        fprintf(stderr, "FATA: Out of Memory");
-        exit(1);
-    }
-    for (int i = 0; i < N; i++) {
-        buf[i] = ' ';
-    }
-    buf[N] = '\0';
-    return buf;
-}
-
-static void printSearchTree(FILE *fd, SearchTree T, int depth) {
-    char *prefix = newSpaces(depth * 2);
-    if (T == NULL) {
-        fprintf(fd, "%sNULL\n", prefix);
-        free(prefix);
-    } else {
-        fprintf(fd, "%s%d\n", prefix, T->Element);
-        free(prefix);
-        printSearchTree(fd, T->Left, depth + 1);
-        printSearchTree(fd, T->Right, depth + 1);
-    }
-}
-
-void FPrintSearchTree(FILE *fd, SearchTree T) {
-    fprintf(fd, "\n");
-    printSearchTree(fd, T, 0);
 }
 
 SearchTree Insert(ElementType X, SearchTree T) {
@@ -134,14 +103,61 @@ Position FindMax(SearchTree T) {
 }
 
 SearchTree Delete(ElementType X, SearchTree T) {
-    return NULL;
+    if (T == NULL) {
+        return NULL;
+    } else if (X < T->Element) {
+        T->Left = Delete(X, T->Left);
+    } else if (X > T->Element) {
+        T->Right = Delete(X, T->Right);
+    } else if (T->Left && T->Right) {
+        Position tmpCell = FindMin(T->Right);
+        T->Element = Retrieve(tmpCell);
+        T->Right = Delete(T->Element, T->Right);
+    } else {
+        SearchTree tmpCell = T;
+        if (T->Left == NULL) {
+            T = T->Right;
+        } else if (T->Right == NULL) {
+            T = T->Left;
+        }
+        free(tmpCell);
+    }
+    return T;
 }
 
 ElementType Retrieve(Position P) {
+    if (P == NULL) {
+        fprintf(stderr, "FATAL: Null Pointer\n");
+        exit(1);
+    }
     return P->Element;
 }
-
 
 #ifdef __cplusplus
 }
 #endif
+
+
+static void append_spaces(std::ostringstream &oss, int N) {
+    for (int i = 0; i < N; i++) {
+        oss << ' ';
+    }
+}
+
+static void printSearchTree(std::ostringstream &oss, SearchTree T, int depth) {
+    if (T == nullptr) {
+        append_spaces(oss, depth * 2);
+        oss << "NULL\n";
+    } else {
+        append_spaces(oss, depth * 2);
+        oss << T->Element << "\n";
+        printSearchTree(oss, T->Left, depth + 1);
+        printSearchTree(oss, T->Right, depth + 1);
+    }
+}
+
+std::string ToString(SearchTree T) {
+    std::ostringstream oss;
+    printSearchTree(oss, T, 0);
+    return oss.str();
+}

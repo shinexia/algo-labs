@@ -26,8 +26,8 @@ TEST(TestGcd, simple) {
                     {8,  12, 4}};
     FN funcs[] = {{GCD, "GCD"}};
 
-    int N = sizeof(cases) / sizeof(cases[0]);
-    int K = sizeof(funcs) / sizeof(funcs[0]);
+    int N = sizeof(cases) / sizeof(Case);
+    int K = sizeof(funcs) / sizeof(fn_gcd);
 
     for (int j = 0; j < K; j++) {
         FN *f = &(funcs[j]);
