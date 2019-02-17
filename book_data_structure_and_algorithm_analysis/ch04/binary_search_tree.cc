@@ -3,10 +3,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 struct TreeNode {
     ElementType Element;
     SearchTree Left;
@@ -132,11 +128,6 @@ ElementType Retrieve(Position P) {
     }
     return P->Element;
 }
-
-#ifdef __cplusplus
-}
-#endif
-
 
 static void appendSpaces(std::ostringstream &oss, int N) {
     for (int i = 0; i < N; i++) {

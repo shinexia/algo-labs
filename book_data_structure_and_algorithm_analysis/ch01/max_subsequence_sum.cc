@@ -1,9 +1,5 @@
 #include "max_subsequence_sum.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 ElementType MaxSubsequenceSum(const ElementType A[], int N) {
     ElementType ThisSum = 0, MaxSum = 0;
     for (int j = 0; j < N; ++j) {
@@ -17,6 +13,3 @@ ElementType MaxSubsequenceSum(const ElementType A[], int N) {
     return MaxSum;
 }
 
-#ifdef __cplusplus
-}
-#endif

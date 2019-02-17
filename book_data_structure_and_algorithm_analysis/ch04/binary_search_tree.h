@@ -4,10 +4,6 @@
 #include <stdio.h>
 #include <sstream>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 struct TreeNode;
 
 typedef int ElementType;
@@ -29,10 +25,6 @@ Position FindMax(SearchTree T);
 
 SearchTree Delete(ElementType X, SearchTree T);
 ElementType Retrieve(Position P);
-
-#ifdef __cplusplus
-}
-#endif
 
 std::string ToString(SearchTree T);
 
