@@ -9,7 +9,7 @@ struct TreeNode {
     SearchTree Right;
 };
 
-SearchTree NewTreeNode(ElementType X) {
+SearchTree NewNode(ElementType X) {
     SearchTree T = (SearchTree) malloc(sizeof(struct TreeNode));
     if (T == NULL) {
         fprintf(stderr, "FATAL: Out of Memory");
@@ -20,7 +20,7 @@ SearchTree NewTreeNode(ElementType X) {
     return T;
 }
 
-SearchTree MakeSearchTree(const ElementType A[], int N) {
+SearchTree NewTree(const ElementType *A, int N) {
     SearchTree T = NULL;
     for (int i = 0; i < N; i++) {
         T = Insert(A[i], T);
@@ -36,27 +36,27 @@ SearchTree MakeEmpty(SearchTree T) {
     }
 }
 
-int GetSearchTreeDepth(SearchTree T) {
+int Height(SearchTree T) {
     if (T == NULL) {
-        return 0;
+        return -1;
     }
-    int l = GetSearchTreeDepth(T->Left);
-    int r = GetSearchTreeDepth(T->Right);
+    int l = Height(T->Left);
+    int r = Height(T->Right);
     return 1 + (l > r ? l : r);
 }
 
-int GetSearchTreeCount(SearchTree T) {
+int Length(SearchTree T) {
     if (T == NULL) {
         return 0;
     }
-    int l = GetSearchTreeCount(T->Left);
-    int r = GetSearchTreeCount(T->Right);
+    int l = Length(T->Left);
+    int r = Length(T->Right);
     return 1 + l + r;
 }
 
 SearchTree Insert(ElementType X, SearchTree T) {
     if (T == NULL) {
-        T = NewTreeNode(X);
+        T = NewNode(X);
     } else if (X < T->Element) {
         T->Left = Insert(X, T->Left);
     } else if (X > T->Element) {

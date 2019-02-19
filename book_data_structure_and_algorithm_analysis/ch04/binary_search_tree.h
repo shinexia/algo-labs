@@ -10,14 +10,14 @@ typedef int ElementType;
 typedef struct TreeNode *Position;
 typedef struct TreeNode *SearchTree;
 
-SearchTree NewTreeNode(ElementType X);
+SearchTree NewNode(ElementType X);
 
-int GetSearchTreeDepth(SearchTree T);
-int GetSearchTreeCount(SearchTree T);
+int Height(SearchTree T);
+int Length(SearchTree T);
 
 SearchTree MakeEmpty(SearchTree T);
 SearchTree Insert(ElementType X, SearchTree T);
-SearchTree MakeSearchTree(const ElementType A[], int N);
+SearchTree NewTree(const ElementType *A, int N);
 
 Position Find(ElementType X, SearchTree T);
 Position FindMin(SearchTree T);
