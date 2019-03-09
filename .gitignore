@@ -22,3 +22,5 @@ cover.out
 
 /build
 cmake-build-debug
+.ipynb_checkpoints
+
