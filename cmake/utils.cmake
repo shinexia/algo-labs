@@ -15,3 +15,10 @@ macro(add_leetcode_test _num _name)
     endif ()
 endmacro()
 
+macro(add_test_target _name)
+    # invoke built-in add_executable
+    add_executable(${_name} ${_name}.cpp)
+    if (TARGET ${_name})
+        target_link_libraries(${_name} ${DEPS})
+    endif ()
+endmacro()
