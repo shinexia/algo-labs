@@ -3,10 +3,10 @@ package _008_string_to_integer_atoi
 import "testing"
 
 func TestMyAtoi(t *testing.T) {
-	cases := []struct{
-		in string
+	cases := []struct {
+		in     string
 		expect int
-	} {
+	}{
 		{in: "  ", expect: 0},
 		{in: " 42  ", expect: 42},
 		{in: "   -42  ", expect: -42},

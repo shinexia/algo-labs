@@ -1,8 +1,8 @@
 package _008_string_to_integer_atoi
 
 import (
-	"unicode"
 	"math"
+	"unicode"
 )
 
 // https://leetcode.com/problems/string-to-integer-atoi/solution/
@@ -53,7 +53,7 @@ func myAtoi(str string) (y int) {
 			}
 		}
 		for _, r := range nums {
-			y = fn(y * 10, rune2int(r))
+			y = fn(y*10, rune2int(r))
 			if y < math.MinInt32 {
 				return math.MinInt32
 			} else if y > math.MaxInt32 {
