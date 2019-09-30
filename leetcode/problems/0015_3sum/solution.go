@@ -3,40 +3,54 @@ package _015_3sum
 // https://leetcode.com/problems/3sum/
 
 import (
-	"reflect"
 	"sort"
 )
 
 func threeSum(nums []int) [][]int {
 	sort.Ints(nums)
 	results := make([][]int, 0)
-	var prev []int
 	n := len(nums)
-	for i, a := range nums[:n-2] {
+	prevA := 1
+	for i := 0; i < n-2; i++ {
+		a := nums[i]
 		if a > 0 {
 			break
 		}
+		if a == prevA {
+			continue
+		}
+		prevA = a
 		li := i + 1
 		ri := n - 1
 		left := nums[li]
 		right := nums[ri]
 		for li < ri {
 			sum := a + left + right
-			switch {
-			case sum == 0:
+			if sum == 0 {
 				ret := []int{a, left, right}
-				if !reflect.DeepEqual(ret, prev) {
-					results = append(results, ret)
-					prev = ret
+				results = append(results, ret)
+				prevLeft := left
+				for {
+					li++
+					left = nums[li]
+					if left != prevLeft || li >= ri {
+						break
+					}
+					prevLeft = left
 				}
+				prevRight := right
+				for {
+					ri--
+					right = nums[ri]
+					if li >= ri || right != prevRight {
+						break
+					}
+					prevRight = right
+				}
+			} else if sum < 0 {
 				li++
 				left = nums[li]
-				ri--
-				right = nums[ri]
-			case sum < 0:
-				li++
-				left = nums[li]
-			case sum > 0:
+			} else {
 				ri--
 				right = nums[ri]
 			}
