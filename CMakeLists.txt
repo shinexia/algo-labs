@@ -13,7 +13,7 @@ add_subdirectory(${MYLIB_ROOT_DIR})
 include_directories(${MYLIB_ROOT_DIR}/include)
 
 
-add_subdirectory(book_data_structure_and_algorithm_analysis)
+add_subdirectory(books/data_structure_and_algorithm_analysis)
 add_subdirectory(leetcode)
 
 add_subdirectory(tests/cpp_tests)
