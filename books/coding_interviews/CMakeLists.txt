@@ -1,4 +1,7 @@
 include(../../cmake/utils.cmake)
 
-add_subdirectory(p001)
+set(DEPS mylib gtest gtest_main glog)
+
+add_solution_test(p001)
+
 

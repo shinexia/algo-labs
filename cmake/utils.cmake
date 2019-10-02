@@ -7,14 +7,6 @@ macro(add_simple_test _name)
     endif ()
 endmacro()
 
-macro(add_leetcode_test _num _name)
-    # invoke built-in add_executable
-    add_executable(${_num}_${_name}_test ${_num}_${_name}/${_name}_test.cc ${_num}_${_name}/${_name}.cc)
-    if (TARGET ${_num}_${_name}_test)
-        target_link_libraries(${_num}_${_name}_test ${DEPS})
-    endif ()
-endmacro()
-
 macro(add_test_target _name)
     # invoke built-in add_executable
     add_executable(${_name} ${_name}.cpp)
@@ -22,3 +14,12 @@ macro(add_test_target _name)
         target_link_libraries(${_name} ${DEPS})
     endif ()
 endmacro()
+
+macro(add_solution_test _dir)
+    # invoke built-in add_executable
+    add_executable(${_dir}_solution_test ${_dir}/solution_test.cc ${_dir}/solution.cc ${_dir}/solution.h)
+    if (TARGET ${_dir}_solution_test)
+        target_link_libraries(${_dir}_solution_test ${DEPS})
+    endif ()
+endmacro()
+
