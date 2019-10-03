@@ -15,7 +15,7 @@ void DeleteBinaryTree(BinaryTreeNode* head) {
         auto t = head;
         if (head->Left) {
             if (head->Right) {
-                //right_stack.push(head->Right);
+                // right_stack.push(head->Right);
             }
             head = head->Left;
         } else if (head->Right) {

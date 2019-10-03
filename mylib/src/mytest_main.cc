@@ -2,7 +2,7 @@
 #include <cstdio>
 #include "glog/logging.h"
 #include "gtest/gtest.h"
-// #include "valgrind.h"
+#include "valgrind/valgrind.h"
 
 #ifdef ARDUINO
 void setup() { testing::InitGoogleTest(); }
