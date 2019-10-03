@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 enable_testing()
 
-set(GTEST_ROOT_DIR third_party/gtest/googletest)
-set(GLOG_ROOT_DIR third_party/glog)
+set(GTEST_ROOT_DIR thirdparty/gtest/googletest)
+set(GLOG_ROOT_DIR thirdparty/glog)
 set(MYLIB_ROOT_DIR mylib)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
