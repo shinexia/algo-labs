@@ -1,13 +1,13 @@
 #include "max_subsequence_sum.h"
 
-#include "mylib.h"
+#include "mylib/mylib.h"
 #include "gtest/gtest.h"
 
-typedef struct Case {
+struct Case {
     ElementType a[10];
     int n;
     ElementType expect;
-} Case;
+};
 
 TEST(TestMaxSubsequenceSum, simple) {
     Case cases[] = {{{},                        0, 0},

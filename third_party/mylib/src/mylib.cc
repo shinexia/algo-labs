@@ -1,4 +1,4 @@
-#include "mylib.h"
+#include "mylib/mylib.h"
 #include <sstream>
 
 namespace mylib {

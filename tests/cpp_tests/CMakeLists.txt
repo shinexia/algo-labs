@@ -1,7 +1,6 @@
-set(DEPS mylib gtest gtest_main)
 
-include(../../cmake/utils.cmake)
+add_test_cc(string_test string_test.cc)
 
-add_test_target(string_test)
+
 
 

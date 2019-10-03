@@ -1,3 +1,6 @@
+#ifndef P001_SOLUTION_H
+#define P001_SOLUTION_H
+
 #include <cstring>
 #include <iostream>
 #include <memory>
@@ -11,9 +14,7 @@ class CMyString {
     CMyString(const CMyString& other) { *this = other; }
     CMyString(CMyString&& other) { *this = std::move(other); }
 
-    ~CMyString() {
-        delete[] data_;
-    }
+    ~CMyString() { delete[] data_; }
 
     CMyString& operator=(const char* data) noexcept {
         auto len = strlen(data);
@@ -91,3 +92,5 @@ inline bool operator!=(const CMyString& str, const CMyString& b) {
 inline bool operator!=(const CMyString& str, const std::string& b) {
     return !(str == b);
 }
+
+#endif  // P001_SOLUTION_H

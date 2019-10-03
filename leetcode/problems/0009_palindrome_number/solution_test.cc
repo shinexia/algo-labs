@@ -4,13 +4,13 @@
 
 #include "solution.h"
 
-#include "mylib.h"
+#include "mylib/mylib.h"
 #include "gtest/gtest.h"
 
-typedef struct Case_ {
+struct Case {
     int x;
     bool expect;
-} Case;
+};
 
 
 TEST(TestPalindromeNumber, simple) {

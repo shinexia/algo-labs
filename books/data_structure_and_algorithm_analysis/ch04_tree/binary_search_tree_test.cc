@@ -1,10 +1,10 @@
 #include "binary_search_tree.h"
 
-#include "mylib.h"
+#include "mylib/mylib.h"
 #include "gtest/gtest.h"
 #include <stdio.h>
 
-typedef struct Case {
+struct Case {
     ElementType A[10];
     int N;
     int Height;
@@ -13,7 +13,7 @@ typedef struct Case {
     ElementType Min;
     ElementType X;
     ElementType NotFound;
-} Case;
+};
 
 
 TEST(TestBinarySearchTree, simple) {

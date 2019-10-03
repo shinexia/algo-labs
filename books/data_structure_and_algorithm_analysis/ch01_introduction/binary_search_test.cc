@@ -1,14 +1,14 @@
 #include "binary_search.h"
 
-#include "mylib.h"
+#include "mylib/mylib.h"
 #include "gtest/gtest.h"
 
-typedef struct Case_ {
+struct Case {
     ElementType A[10];
     int N;
     ElementType x;
     int expect;
-} Case;
+};
 
 TEST(TestBinarySearch, simple) {
     Case cases[] = {{{},                          0, 1,  NotFound},

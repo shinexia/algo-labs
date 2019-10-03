@@ -1,13 +1,13 @@
 #include "pow.h"
 
-#include "mylib.h"
+#include "mylib/mylib.h"
 #include "gtest/gtest.h"
 
-typedef struct Case_ {
+struct Case {
     ElementType X;
     int n;
     ElementType expect;
-} Case;
+};
 
 typedef ElementType (*fn_pow)(ElementType X, int n);
 

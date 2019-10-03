@@ -1,9 +1,9 @@
 #include "solution.h"
-#include "gtest/gtest.h"
 #include "glog/logging.h"
-#include "mylib.h"
+#include "gtest/gtest.h"
+#include "mylib/mylib.h"
 
-TEST(TestBinarySearch, simple) {
+TEST(p001, CMyString) {
     const char hello[] = "hello";
     const CMyString str1(hello);
     CMyString str2 = "world";

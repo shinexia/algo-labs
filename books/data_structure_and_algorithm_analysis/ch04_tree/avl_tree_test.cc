@@ -4,10 +4,10 @@
 
 #include "avl_tree.h"
 
-#include "mylib.h"
+#include "mylib/mylib.h"
 #include "gtest/gtest.h"
 
-typedef struct Case_ {
+struct Case {
     ElementType A[20];
     ElementType Equal[20];
     int N;
@@ -19,7 +19,7 @@ typedef struct Case_ {
     ElementType EqualX[20];
     ElementType NotFound;
     ElementType EqualEnd[20];
-} Case;
+};
 
 
 TEST(TestBinarySearchTree, simple) {
