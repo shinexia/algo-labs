@@ -1,5 +1,4 @@
-#ifndef P001_SOLUTION_H
-#define P001_SOLUTION_H
+#pragma once
 
 #include <cstring>
 #include <iostream>
@@ -92,5 +91,3 @@ inline bool operator!=(const CMyString& str, const CMyString& b) {
 inline bool operator!=(const CMyString& str, const std::string& b) {
     return !(str == b);
 }
-
-#endif  // P001_SOLUTION_H

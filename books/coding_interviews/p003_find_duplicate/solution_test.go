@@ -1,4 +1,4 @@
-package p003
+package p003_find_duplicate
 
 import "testing"
 

@@ -1,4 +1,4 @@
-package p003
+package p003_find_duplicate
 
 func duplicate(nums []int) int {
 	N := len(nums)

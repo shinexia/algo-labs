@@ -6,18 +6,28 @@ Most used: go and c++
 
 ```bash
 git submodule update --init
+sudo apt install valgrind
 ```
 
 ## Tips
+
+### C++ MemCheck
+
+```bash
+mkdir build && cd build
+cmake ..
+make -j16
+ctest -D ExperimentalMemCheck
+```
 
 ### Go Tests Coverage
 
 ```bash
 go test -cover
-```
-
-or
-
-```bash
+# or
 go tool cover -html=cover.out
 ```
+
+## LICENSE
+
+<https://github.com/shinexia/algorithm-labs/blob/master/LICENSE>

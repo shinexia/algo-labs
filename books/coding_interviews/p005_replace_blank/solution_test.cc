@@ -8,7 +8,7 @@ struct Case {
     char expect[LENGTH];
 };
 
-TEST(p005, replace) {
+TEST(p005, TestReplaceBlank) {
     Case cases[] = {
         {"hello world  ", "hello%20world%20%20"},
         {"", ""},

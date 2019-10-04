@@ -1,5 +1,4 @@
-#ifndef P005_SOLUTION_H
-#define P005_SOLUTION_H
+#pragma once
 
 int ReplaceBlank(char str[], int length) {
     int blankCount = 0;
@@ -28,5 +27,3 @@ int ReplaceBlank(char str[], int length) {
     };
     return 0;
 }
-
-#endif  // P005_SOLUTION_H

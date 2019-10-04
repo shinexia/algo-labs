@@ -1,5 +1,8 @@
-
-add_solution_test(p001)
-add_solution_test(p004)
-add_solution_test(p005)
-add_solution_test(p007)
+add_solution_test(p001_mystring)
+add_solution_test(p004_find_in_matrix)
+add_solution_test(p005_replace_blank)
+add_solution_test(p007_construct_binary_tree)
+add_solution_test(p008_next_node)
+add_solution_test(p009_stack_queue)
+add_solution_test(p011_rotated_array)
+add_solution_test(p012_matrix_string_path)

@@ -1,6 +1,7 @@
 #ifndef MYLIB_MYLIB_H
 #define MYLIB_MYLIB_H
 
+#pragma once
 #include <functional>
 #include <memory>
 #include <string>
