@@ -1,32 +1,51 @@
 package sorting
 
 func QuickSort(a []int) {
-	quickSort(a, 0, len(a) - 1)
+	quickSort(a, 0, len(a)-1)
 }
 
-func quickSort(a []int, start, end int) {
+func quickSort(data []int, start, end int) {
 	if start >= end {
 		return
 	}
+	if start+1 == end {
+		if data[start] > data[end] {
+			swap(data, start, end)
+		}
+		return
+	}
+	mid := partition(data, start, end)
+	quickSort(data, start, mid-1)
+	quickSort(data, mid+1, end)
+}
+
+func partition(data []int, start, end int) int {
 	var (
-		mid = a[start]
-		i   = start // 最终i会被移动到a[start]的正确位置，但a[start]可能已经在正确的位置了，所以此处不能取start+1
-		j   = end
+		m     = int(uint(start+end) >> 1)
+		pivot = data[m]
+		i     = start + 1
+		j     = end
 	)
-	for i < j {
-		for i < j && a[j] >= mid {
-			j--
+	swap(data, start, m)
+	for {
+		for ; i < j && data[j] >= pivot; j-- { // data[j] < pivot
 		}
-		for i < j && a[i] <= mid { // 这里必须取等，因为i=start时，a[i] == mid成立，导致a[i]被交换
-			i++
+		for ; i < j && data[i] < pivot; i++ { // data[i] >= pivot
 		}
-		if i < j {
-			swap(a, i, j)
+		if i >= j {
+			break
+		}
+		// data[i] < pivot, data[j] >= pivot
+		swap(data, i, j)
+		i++
+		j--
+	}
+	if data[j] > pivot {
+		j--
+		if j == start {
+			return start
 		}
 	}
-	if a[start] > a[i] {
-		swap(a, start, i)
-	}
-	quickSort(a, start, i - 1)
-	quickSort(a, i + 1, end)
+	swap(data, start, j)
+	return j
 }

@@ -13,7 +13,7 @@ var cases = []struct {
 	{a: []int{1}, expect: []int{1}},
 	{a: []int{1, 2}, expect: []int{1, 2}},
 	{a: []int{2, 1, 3}, expect: []int{1, 2, 3}},
-	//{a: []int{2, -1, -3}, expect: []int{-3, -1, 2}},
+	{a: []int{2, -1, -3}, expect: []int{-3, -1, 2}},
 	{a: []int{3, 5, 4}, expect: []int{3, 4, 5}},
 	{a: []int{3, 5, 4, 3}, expect: []int{3, 3, 4, 5}},
 	{a: []int{5, 3, 8, 6, 4}, expect: []int{3, 4, 5, 6, 8}},
