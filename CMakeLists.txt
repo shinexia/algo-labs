@@ -37,9 +37,6 @@ enable_testing()
 
 include(CTest)
 
-# turn off glog test targets
-set(BUILD_TESTING OFF)
-
 # macros
 include(cmake/macros.cmake)
 
@@ -47,6 +44,8 @@ include(cmake/macros.cmake)
 include_directories(${GTEST_ROOT_DIR}/include)
 add_subdirectory(${GTEST_ROOT_DIR})
 
+# turn off glog test targets
+set(BUILD_TESTING OFF)
 include_directories(${CMAKE_BINARY_DIR}/${GLOG_ROOT_DIR})
 include_directories(${GLOG_ROOT_DIR}/src)
 add_subdirectory(${GLOG_ROOT_DIR})

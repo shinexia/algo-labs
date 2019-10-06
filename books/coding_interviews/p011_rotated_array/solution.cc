@@ -1,7 +1,7 @@
 #include "solution.h"
 #include <stdexcept>
 #include "glog/logging.h"
-#include "mylib/mylib.h"
+#include "mylib/util.h"
 
 int direct(int* number, int p1, int p2) {
     int ret = number[p1];

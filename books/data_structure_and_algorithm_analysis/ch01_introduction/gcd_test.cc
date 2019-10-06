@@ -12,7 +12,7 @@ typedef ElementType (*fn_gcd)(ElementType M, ElementType N);
 
 struct FN {
     fn_gcd fn;
-    const char *name;
+    char name[10];
 };
 
 TEST(TestGcd, simple) {

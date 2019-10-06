@@ -1,6 +1,6 @@
 #include "solution.h"
 #include "gtest/gtest.h"
-#include "mylib/mylib.h"
+#include "mylib/util.h"
 
 struct Case {
     int matrix[64];

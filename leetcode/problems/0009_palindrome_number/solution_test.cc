@@ -4,7 +4,7 @@
 
 #include "solution.h"
 
-#include "mylib/mylib.h"
+#include "mylib/util.h"
 #include "gtest/gtest.h"
 
 struct Case {

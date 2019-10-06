@@ -28,6 +28,12 @@ go test -cover
 go tool cover -html=cover.out
 ```
 
+## Editor
+
+VS Code with CMAKE
+
+![vscode-cmake](docs/screenshot.png)
+
 ## LICENSE
 
 <https://github.com/shinexia/algorithm-labs/blob/master/LICENSE>

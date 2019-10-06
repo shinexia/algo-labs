@@ -1,6 +1,6 @@
 #include "solution.h"
 #include <cstring>
-#include "mylib/mylib.h"
+#include "mylib/util.h"
 
 static const int directions[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 

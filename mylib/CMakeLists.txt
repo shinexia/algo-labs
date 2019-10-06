@@ -17,3 +17,5 @@ add_library(mytest_main STATIC src/mytest_main.cc)
 target_link_libraries(mylib glog gtest)
 
 add_test_cc(binary_tree_test src/binary_tree_test.cc)
+add_test_cc(algo_test src/algo_test.cc)
+add_test_cc(qsort_test src/qsort_test.cc)

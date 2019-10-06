@@ -3,7 +3,7 @@
 
 #pragma once
 #include <ostream>
-#include "mylib/mylib.h"
+#include "mylib/util.h"
 
 namespace mylib {
 

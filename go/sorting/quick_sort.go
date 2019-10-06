@@ -40,7 +40,7 @@ func partition(data []int, start, end int) int {
 		i++
 		j--
 	}
-	if data[j] > pivot {
+	if data[j] >= pivot {
 		j--
 		if j == start {
 			return start

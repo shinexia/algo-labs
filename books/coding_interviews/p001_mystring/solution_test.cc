@@ -1,7 +1,7 @@
 #include "solution.h"
 #include "glog/logging.h"
 #include "gtest/gtest.h"
-#include "mylib/mylib.h"
+#include "mylib/util.h"
 
 TEST(p001, TestCMyString) {
     const char hello[] = "hello";

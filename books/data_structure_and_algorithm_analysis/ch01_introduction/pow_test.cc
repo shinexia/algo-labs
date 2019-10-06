@@ -1,7 +1,7 @@
 #include "pow.h"
 
 #include "gtest/gtest.h"
-#include "mylib/mylib.h"
+#include "mylib/util.h"
 
 struct Case {
     ElementType X;
@@ -13,7 +13,7 @@ typedef ElementType (*fn_pow)(ElementType X, int n);
 
 struct FN {
     fn_pow fn;
-    const char *name;
+    char name[10];
 };
 
 TEST(TestPow, simple) {

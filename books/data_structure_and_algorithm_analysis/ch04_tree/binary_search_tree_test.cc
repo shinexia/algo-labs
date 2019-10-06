@@ -1,6 +1,6 @@
 #include "binary_search_tree.h"
 
-#include "mylib/mylib.h"
+#include "mylib/util.h"
 #include "gtest/gtest.h"
 #include <stdio.h>
 
