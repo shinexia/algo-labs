@@ -11,7 +11,7 @@ struct HeapStruct {
 };
 
 PriorityQueue Initialize(int MaxElements) {
-
+    return nullptr;
 }
 
 void Destroy(PriorityQueue H) {

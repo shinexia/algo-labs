@@ -11,7 +11,7 @@ static double pow_(double base, int exponent) {
     }
     double k = 1;
     do {
-        if (exponent & 1 == 1) {
+        if ((exponent & 1) == 1) {
             k *= base;
             --exponent;
         } else {

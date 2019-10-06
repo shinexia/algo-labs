@@ -24,7 +24,7 @@ int GenericPartition(T& nums, int start, int end) {
         }
         return start;
     }
-    int mid = int(uint(start + end) >> 1);
+    int mid = int(uint32_t(start + end) >> 1);
     qsort_swap(nums, start, mid);
     // pivot是引用，swap后会被修改
     auto& pivot = nums[start];
