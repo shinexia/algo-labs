@@ -15,10 +15,12 @@ sudo apt install valgrind
 
 ```bash
 mkdir build && cd build
-cmake ..
-make -j16
-ctest -D ExperimentalMemCheck
+cmake -G Ninja ..
+ninja
+ninja ExperimentalMemCheck
 ```
+
+或者在vscode cmake outline中右键`ExperimentalMemCheck`执行
 
 ### Go Tests Coverage
 

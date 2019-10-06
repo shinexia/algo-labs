@@ -1,6 +1,6 @@
 #include "solution.h"
 #include <stdexcept>
-#include "mylib/algo.h"
+#include "mylib/qsort.h"
 
 static int checkValid(int* number, int length, int result) {
     int counter = 0;
