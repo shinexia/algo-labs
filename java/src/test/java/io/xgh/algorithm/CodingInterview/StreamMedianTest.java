@@ -1,4 +1,4 @@
-package io.xgh.algo.books.CodingInterview;
+package io.xgh.algorithm.CodingInterview;
 
 import org.junit.Assert;
 import org.junit.Test;

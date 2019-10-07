@@ -1,4 +1,4 @@
-package io.xgh.algo.books.CodingInterview;
+package io.xgh.algorithm.CodingInterview;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
