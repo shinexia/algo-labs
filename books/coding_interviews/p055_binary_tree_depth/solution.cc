@@ -1,6 +1,8 @@
 #include "solution.h"
 #include <stack>
 
+// 匿名namespace确保是内部类
+namespace {
 enum StateType { TRAVELING_START = 0, TRAVELING_LEFT, TRAVELING_RIGHT };
 
 struct StackInfo {
@@ -21,6 +23,7 @@ struct StackInfo {
         this->right = right;
     }
 };
+}  // namespace
 
 int TreeDepth(BinaryTreeNode* head) {
     if (head == nullptr) {
