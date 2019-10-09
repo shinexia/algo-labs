@@ -1,13 +1,8 @@
 #pragma once
 
+#include <algorithm>
 #include <functional>
 #include <vector>
-
-template <typename T>
-void push_heap(std::vector<T>& vec, T num) {
-    vec.push_back(num);
-    std::push_heap(vec.begin(), vec.end(), std::less<T>());
-};
 
 template <typename T>
 class DynamicArray {

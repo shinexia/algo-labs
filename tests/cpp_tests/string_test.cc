@@ -7,14 +7,14 @@
 #include <vector>
 
 void proc(const std::string& str1, const std::string& str2) {
-    int i = 1000000;
+    int i = 1000;
     while (--i >= 0) {
         std::equal(str1.begin(), str1.end(), str2.begin());
     }
 }
 
 int main() {
-    size_t thread_num = 50;
+    size_t thread_num = 5;
 
     std::string str1 = "abcdef";
     std::string str2 = "abcdef";

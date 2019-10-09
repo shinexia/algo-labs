@@ -1,27 +1,26 @@
 #include "binary_search_tree.h"
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 struct TreeNode {
     ElementType Element;
-    SearchTree Left;
-    SearchTree Right;
+    SearchTree Left = nullptr;
+    SearchTree Right = nullptr;
 };
 
 SearchTree NewNode(ElementType X) {
-    SearchTree T = (SearchTree) malloc(sizeof(struct TreeNode));
-    if (T == NULL) {
+    SearchTree T = new TreeNode();
+    if (T == nullptr) {
         fprintf(stderr, "FATAL: Out of Memory");
         exit(1);
     }
     T->Element = X;
-    T->Left = T->Right = NULL;
     return T;
 }
 
 SearchTree NewTree(const ElementType *A, int N) {
-    SearchTree T = NULL;
+    SearchTree T = nullptr;
     for (int i = 0; i < N; i++) {
         T = Insert(A[i], T);
     }
@@ -29,15 +28,16 @@ SearchTree NewTree(const ElementType *A, int N) {
 }
 
 SearchTree MakeEmpty(SearchTree T) {
-    if (T != NULL) {
+    if (T != nullptr) {
         MakeEmpty(T->Left);
         MakeEmpty(T->Right);
-        free(T);
+        delete T;
     }
+    return nullptr;
 }
 
 int Height(SearchTree T) {
-    if (T == NULL) {
+    if (T == nullptr) {
         return -1;
     }
     int l = Height(T->Left);
@@ -46,7 +46,7 @@ int Height(SearchTree T) {
 }
 
 int Length(SearchTree T) {
-    if (T == NULL) {
+    if (T == nullptr) {
         return 0;
     }
     int l = Length(T->Left);
@@ -55,7 +55,7 @@ int Length(SearchTree T) {
 }
 
 SearchTree Insert(ElementType X, SearchTree T) {
-    if (T == NULL) {
+    if (T == nullptr) {
         T = NewNode(X);
     } else if (X < T->Element) {
         T->Left = Insert(X, T->Left);
@@ -67,8 +67,8 @@ SearchTree Insert(ElementType X, SearchTree T) {
 }
 
 Position Find(ElementType X, SearchTree T) {
-    if (T == NULL) {
-        return NULL;
+    if (T == nullptr) {
+        return nullptr;
     } else if (X < T->Element) {
         return Find(X, T->Left);
     } else if (X > T->Element) {
@@ -79,9 +79,9 @@ Position Find(ElementType X, SearchTree T) {
 }
 
 Position FindMin(SearchTree T) {
-    if (T == NULL) {
-        return NULL;
-    } else if (T->Left != NULL) {
+    if (T == nullptr) {
+        return nullptr;
+    } else if (T->Left != nullptr) {
         return FindMin(T->Left);
     } else {
         return T;
@@ -89,9 +89,9 @@ Position FindMin(SearchTree T) {
 }
 
 Position FindMax(SearchTree T) {
-    if (T == NULL) {
-        return NULL;
-    } else if (T->Right != NULL) {
+    if (T == nullptr) {
+        return nullptr;
+    } else if (T->Right != nullptr) {
         return FindMax(T->Right);
     } else {
         return T;
@@ -99,8 +99,8 @@ Position FindMax(SearchTree T) {
 }
 
 SearchTree Delete(ElementType X, SearchTree T) {
-    if (T == NULL) {
-        return NULL;
+    if (T == nullptr) {
+        return nullptr;
     } else if (X < T->Element) {
         T->Left = Delete(X, T->Left);
     } else if (X > T->Element) {
@@ -111,18 +111,18 @@ SearchTree Delete(ElementType X, SearchTree T) {
         T->Right = Delete(T->Element, T->Right);
     } else {
         SearchTree tmpCell = T;
-        if (T->Left == NULL) {
+        if (T->Left == nullptr) {
             T = T->Right;
-        } else if (T->Right == NULL) {
+        } else if (T->Right == nullptr) {
             T = T->Left;
         }
-        free(tmpCell);
+        delete tmpCell;
     }
     return T;
 }
 
 ElementType Retrieve(Position P) {
-    if (P == NULL) {
+    if (P == nullptr) {
         fprintf(stderr, "FATAL: Null Pointer\n");
         exit(1);
     }
@@ -138,7 +138,7 @@ static void appendSpaces(std::ostringstream &oss, int N) {
 static void printSearchTree(std::ostringstream &oss, SearchTree T, int depth) {
     appendSpaces(oss, depth * 2);
     if (T == nullptr) {
-        oss << "NULL\n";
+        oss << "nullptr\n";
     } else {
         oss << T->Element << "\n";
         printSearchTree(oss, T->Left, depth + 1);

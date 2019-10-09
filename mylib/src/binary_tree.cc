@@ -105,14 +105,15 @@ deleted_unique_ptr<BinaryTreeNode> MakeBinaryTree(CVal* vals, int num_vals) {
             } else {
                 for (int j = 0; j < node.Move; ++j) {
                     if (stack.empty()) {
-                        LOG(FATAL) << "invalid val: " << node.Val
-                                   << ", move: " << node.Move;
+                        LOG(FATAL) << "pop overflow val: " << node.Val
+                                   << ", move: " << node.Move
+                                   << ", over: " << node.Move - j + 1;
                     }
                     stack.pop();
                 }
                 if (stack.empty()) {
-                    LOG(FATAL) << "invalid val: " << node.Val
-                               << ", move: " << node.Move;
+                    LOG(FATAL) << "pop overflow val: " << node.Val
+                               << ", move: " << node.Move << ", over: " << 1;
                 }
                 stack.top()->SetRight(t);
             }

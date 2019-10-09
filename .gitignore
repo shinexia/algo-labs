@@ -24,7 +24,7 @@ cover.out
 cmake-build-debug
 .ipynb_checkpoints
 /core
-/java/target
+target
 .project
 .settings
 .classpath
