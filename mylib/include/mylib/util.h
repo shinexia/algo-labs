@@ -6,6 +6,7 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include <sstream>
 
 namespace mylib {
 
@@ -18,7 +19,19 @@ deleted_unique_ptr<T> make_deleted_unique(T* t,
     return deleted_unique_ptr<T>(t, deleter);
 }
 
-std::string stringify(const int A[], int N);
+template <typename T>
+std::string stringify(const T A, int N) {
+  std::ostringstream oss;
+  oss << "[";
+  for (int i=0; i<N; i++) {
+    if (i != 0) {
+      oss << ",";
+    }
+    oss << A[i];
+  }
+  oss << "]";
+  return oss.str();
+}
 
 }  // namespace mylib
 
