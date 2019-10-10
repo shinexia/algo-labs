@@ -87,14 +87,102 @@ void DeleteBinaryTree(BinaryTreeNode* head) {
     return;
 }
 
-deleted_unique_ptr<BinaryTreeNode> MakeBinaryTree(CVal* vals, int num_vals) {
+std::vector<std::string> Serialize(const BinaryTreeNode* root) {
+    std::vector<std::string> vec;
+    if (root == nullptr) {
+        return vec;
+    }
+    vec.push_back(std::to_string(root->Value));
+    std::deque<const BinaryTreeNode*> queue;
+    queue.push_back(root);
+    int nullCount = 0;
+    do {
+        const BinaryTreeNode* next = queue.front();
+        if (next->Left) {
+            if (nullCount > 0) {
+                while (nullCount--) {
+                    vec.push_back(NULL_INT_NAME);
+                }
+                // now nullCount = -1
+                nullCount = 0;
+            }
+            vec.push_back(std::to_string(next->Left->Value));
+            queue.push_back(next->Left);
+        } else {
+            ++nullCount;
+        }
+        if (next->Right) {
+            if (nullCount > 0) {
+                while (nullCount--) {
+                    vec.push_back(NULL_INT_NAME);
+                }
+                // now nullCount = -1
+                nullCount = 0;
+            }
+            vec.push_back(std::to_string(next->Right->Value));
+            queue.push_back(next->Right);
+        } else {
+            ++nullCount;
+        }
+        queue.pop_front();
+    } while (!queue.empty());
+    return vec;
+}
+
+template <typename T>
+static deleted_unique_ptr<BinaryTreeNode> GenericDeserialize(const T& vals,
+                                                             int num_val) {
+    BinaryTreeNode* head = nullptr;
+    if (num_val > 0) {
+        head = new BinaryTreeNode(vals[0]);
+        std::deque<BinaryTreeNode*> queue;
+        queue.push_back(head);
+        int i = 1;
+        while (i < num_val) {
+            if (vals[i] != NULL_INT) {
+                if (queue.empty()) {
+                    throw std::runtime_error(
+                        mylib::string_format("empty queue, i=%d", i));
+                }
+                BinaryTreeNode* left = new BinaryTreeNode(vals[i]);
+                queue.front()->SetLeft(left);
+                queue.push_back(left);
+            }
+            ++i;
+            if (i < num_val && vals[i] != NULL_INT) {
+                if (queue.empty()) {
+                    throw std::runtime_error(
+                        mylib::string_format("empty queue, i=%d", i));
+                }
+                BinaryTreeNode* right = new BinaryTreeNode(vals[i]);
+                queue.front()->SetRight(right);
+                queue.push_back(right);
+            }
+            ++i;
+            if (!queue.empty()) {
+                queue.pop_front();
+            }
+        };
+    }
+    return deleted_unique_ptr<BinaryTreeNode>(head, DeleteBinaryTree);
+}
+
+deleted_unique_ptr<BinaryTreeNode> Deserialize(const int* vals, int num_val) {
+    return GenericDeserialize<const int*>(vals, num_val);
+}
+
+deleted_unique_ptr<BinaryTreeNode> Deserialize(const std::vector<int>& vals) {
+    return GenericDeserialize<std::vector<int>>(vals, vals.size());
+}
+
+deleted_unique_ptr<BinaryTreeNode> MakeBinaryTree(const CVal* vals,
+                                                  int num_vals) {
     deleted_unique_ptr<BinaryTreeNode> head(nullptr, DeleteBinaryTree);
     BinaryTreeNode* prev;
     std::stack<BinaryTreeNode*> stack;
     for (int i = 0; i < num_vals; ++i) {
         auto& node = vals[i];
-        auto t = new BinaryTreeNode();
-        t->Value = node.Val;
+        auto t = new BinaryTreeNode(node.Val);
         if (i == 0) {
             head.reset(t);
         } else {
@@ -124,7 +212,32 @@ deleted_unique_ptr<BinaryTreeNode> MakeBinaryTree(CVal* vals, int num_vals) {
     return head;
 }
 
-static int _PrintTreeF(std::ostream& os, BinaryTreeNode* head, int depth) {
+BinaryTreeNode* BST_Insert(BinaryTreeNode* root, BinaryTreeNode* node) {
+    if (root == nullptr) {
+        return node;
+    }
+    if (node == nullptr) {
+        return root;
+    }
+    if (node->Value < root->Value) {
+        root->Left = BST_Insert(root->Left, node);
+    } else {
+        root->Right = BST_Insert(root->Right, node);
+    }
+    return root;
+}
+
+deleted_unique_ptr<BinaryTreeNode> MakeBinarySearchTree(const int vals[],
+                                                        int num_val) {
+    BinaryTreeNode* head = nullptr;
+    for (int i = 0; i < num_val; ++i) {
+        head = BST_Insert(head, new BinaryTreeNode(vals[i]));
+    }
+    return deleted_unique_ptr<BinaryTreeNode>(head, DeleteBinaryTree);
+}
+
+static int _PrintTreeF(std::ostream& os, const BinaryTreeNode* head,
+                       int depth) {
     if (head->Right) {
         _PrintTreeF(os, head->Right, depth + 1);
         os << "\n";
@@ -132,11 +245,7 @@ static int _PrintTreeF(std::ostream& os, BinaryTreeNode* head, int depth) {
     for (int i = 0; i < depth; ++i) {
         os << "  ";
     }
-    os << "(" << head->Value;
-    if (head->Parent) {
-        os << "," << head->Parent->Value;
-    }
-    os << ")";
+    os << head->Value;
     if (head->Left) {
         os << "\n";
         _PrintTreeF(os, head->Left, depth + 1);
@@ -144,7 +253,7 @@ static int _PrintTreeF(std::ostream& os, BinaryTreeNode* head, int depth) {
     return 0;
 }
 
-std::ostream& PrintTreeF(std::ostream& os, BinaryTreeNode* head) {
+std::ostream& PrintTreeF(std::ostream& os, const BinaryTreeNode* head) {
     if (head != nullptr) {
         _PrintTreeF(os, head, 0);
     } else {
@@ -153,37 +262,34 @@ std::ostream& PrintTreeF(std::ostream& os, BinaryTreeNode* head) {
     return os;
 }
 
-std::ostream& PrintNodeF(std::ostream& os, BinaryTreeNode* node) {
+std::ostream& PrintNodeF(std::ostream& os, const BinaryTreeNode* node) {
     if (node == nullptr) {
         os << "<nil>";
     } else {
-        os << "(" << node->Value;
-        if (node->Parent) {
-            os << "," << node->Parent->Value;
-        }
-        os << ")";
+        os << node->Value;
     }
     return os;
 }
 
-std::string PrintTree(BinaryTreeNode* head) {
+std::string PrintTree(const BinaryTreeNode* head) {
     std::ostringstream oss;
     PrintTreeF(oss, head);
     return oss.str();
 }
 
-std::string PrintNode(BinaryTreeNode* node) {
+std::string PrintNode(const BinaryTreeNode* node) {
     std::ostringstream oss;
     PrintNodeF(oss, node);
     return oss.str();
 }
 
 // 前序遍历，先访问根节点，再访问左子节点，最后访问右子节点
-bool CheckPreOrder(BinaryTreeNode* head, int* preorders, int num_orders) {
+bool CheckPreOrder(const BinaryTreeNode* head, const int* preorders,
+                   int num_orders) {
     if (head == nullptr) {
         return num_orders == 0;
     }
-    std::stack<BinaryTreeNode*> stack;
+    std::stack<const BinaryTreeNode*> stack;
     int i = 0;
     while (true) {
         if (i >= num_orders) {
@@ -211,11 +317,12 @@ bool CheckPreOrder(BinaryTreeNode* head, int* preorders, int num_orders) {
 }
 
 // 中序遍历，先访问左子节点，再访问根节点，最后访问右子节点
-bool CheckInOrder(BinaryTreeNode* head, int* inorders, int num_orders) {
+bool CheckInOrder(const BinaryTreeNode* head, const int* inorders,
+                  int num_orders) {
     if (head == nullptr) {
         return num_orders == 0;
     }
-    std::stack<BinaryTreeNode*> stack;
+    std::stack<const BinaryTreeNode*> stack;
     bool is_back = false;
     int i = 0;
     while (true) {
@@ -248,11 +355,12 @@ bool CheckInOrder(BinaryTreeNode* head, int* inorders, int num_orders) {
 }
 
 // 后序遍历，先访问左子节点，再访问右子节点，最后访问根节点
-bool CheckPostOrder(BinaryTreeNode* head, int* postorders, int num_orders) {
+bool CheckPostOrder(const BinaryTreeNode* head, const int* postorders,
+                    int num_orders) {
     if (head == nullptr) {
         return num_orders == 0;
     }
-    std::stack<std::pair<BinaryTreeNode*, int>> stack;
+    std::stack<std::pair<const BinaryTreeNode*, int>> stack;
     int back_flag = 0;
     int i = 0;
     while (true) {
@@ -288,7 +396,8 @@ bool CheckPostOrder(BinaryTreeNode* head, int* postorders, int num_orders) {
     return true;
 }
 
-BinaryTreeNode* GetFromPath(BinaryTreeNode* head, int* path, int num_path) {
+BinaryTreeNode* GetFromPath(BinaryTreeNode* head, const int* path,
+                            int num_path) {
     for (int i = 0; i < num_path && head != nullptr; ++i) {
         int next = path[i];
         if (next == 0) {

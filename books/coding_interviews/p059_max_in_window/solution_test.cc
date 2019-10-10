@@ -25,7 +25,7 @@ bool is_equal(const std::vector<T>& out, T* expect, int expect_size) {
 }
 }  // namespace
 
-TEST(codingInterview, TestMaxInWindow) {
+TEST(codingInterviews, TestMaxInWindow) {
     MaxInWindowTestCase cases[] = {
         {{2, 3, 4, 2, 6, 2, 5, 1}, 8, 3, {4, 4, 6, 6, 6, 5}},
     };
@@ -33,6 +33,9 @@ TEST(codingInterview, TestMaxInWindow) {
     for (int i = 0; i < N; ++i) {
         auto& c = cases[i];
         std::vector<int> vec(c.num_len);
+        for (int k=0; k<c.num_len; ++k) {
+            vec[k] = c.nums[k];
+        }
         auto out = MaxInWindow(vec, c.winsize);
         int expect_size = c.num_len - c.winsize + 1;
         EXPECT_TRUE(is_equal(out, c.expect, expect_size))
@@ -54,7 +57,7 @@ struct TestCase {
 };
 }  // namespace
 
-TEST(codingInterview, TestQueueWithMax) {
+TEST(codingInterviews, TestQueueWithMax) {
     TestCase cases[] = {{{{1, 2, 2},
                           {1, 3, 3},
                           {1, 4, 4},

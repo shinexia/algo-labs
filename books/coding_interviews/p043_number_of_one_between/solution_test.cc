@@ -8,7 +8,7 @@ struct Case {
     int expect;
 };
 
-TEST(p043, TestLessThan) {
+TEST(codingInterviews, TestLessThan) {
     Case cases[] = {
         {1, 0},     {10, 1},     {20, 12},     {90, 19},        {100, 20},
         {200, 140}, {1000, 300}, {2000, 1600}, {100000, 50000},
@@ -31,7 +31,7 @@ TEST(p043, TestLessThan) {
     }
 }
 
-TEST(p043, TestNumberOfOneBetween) {
+TEST(codingInterviews, TestNumberOfOneBetween) {
     int real = 0;
     for (int i = 0; i < 100000; ++i) {
         real += NumberOfOne(i);

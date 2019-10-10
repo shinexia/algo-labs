@@ -7,7 +7,7 @@ struct Case {
     int expect;
 };
 
-TEST(p046, TestGetTranslationCount) {
+TEST(codingInterviews, TestGetTranslationCount) {
     Case cases[] = {
         {-100, 0}, {0, 1},   {9, 1},   {10, 2},  {25, 2},    {26, 1},  {99, 1},
         {100, 2},  {110, 3}, {125, 3}, {126, 2}, {12258, 5}, {426, 1},

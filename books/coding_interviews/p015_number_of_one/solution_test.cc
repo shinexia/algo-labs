@@ -14,7 +14,7 @@ struct FN {
     char name[20];
 };
 
-TEST(p015, TestNumberOfOne) {
+TEST(codingInterviews, TestNumberOfOne) {
     Case cases[] = {{0, 0},           {1, 1},           {0xFFFFFFFF, 32},
                     {-1, 32},         {0x7FFFFFFF, 31}, {0x80000000, 1},
                     {-2147483648, 1}, {-2147483647, 2}};

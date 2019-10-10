@@ -9,7 +9,7 @@ struct Case {
     bool expect;
 };
 
-TEST(p012, TestHasPath) {
+TEST(codingInterviews, TestHasPath) {
     Case cases[] = {
         {"abtgcfcsjdeh", 4, 4, "a", true},
         {"abtgcfcsjdeh", 4, 4, "x", false},

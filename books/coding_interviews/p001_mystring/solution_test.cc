@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 #include "mylib/util.h"
 
-TEST(p001, TestCMyString) {
+TEST(codingInterviews, TestCMyString) {
     const char hello[] = "hello";
     const CMyString str1(hello);
     CMyString str2 = "world";

@@ -14,7 +14,7 @@ class QueueWithMax {
 
     void push_back(T number) {
         dataQueue_.emplace_back(number, index_);
-        while (!maxQueue_.empty() && number > maxQueue_.back().number) {
+        while (!maxQueue_.empty() && number >= maxQueue_.back().number) {
             maxQueue_.pop_back();
         }
         maxQueue_.emplace_back(number, index_);

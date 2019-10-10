@@ -2,7 +2,7 @@
 #include "glog/logging.h"
 #include "gtest/gtest.h"
 
-TEST(p009, TestCQueue) {
+TEST(codingInterviews, TestCQueue) {
     CQueue<int> q;
     q.appendTail(1);               // 0, 1
     q.appendTail(2);               // 0, 2

@@ -8,7 +8,7 @@ struct Case {
     int expect;
 };
 
-TEST(p055, TestTreeDepth) {
+TEST(codingInterviews, TestTreeDepth) {
     Case cases[] = {
         {{{}}, 0, 0},
         {{{1, 0}}, 1, 1},

@@ -6,7 +6,7 @@ struct Case {
     int expect;
 };
 
-TEST(p048, TestLongestSubstring) {
+TEST(codingInterviews, TestLongestSubstring) {
     Case cases[] = {
         {"arabcacfr", 4}, {"acfrarabc", 4}, {"arabcacfr", 4}, {"aaaa", 1},
         {"abcdefg", 7},   {"aaabbbccc", 2}, {"abcdcba", 4},   {"abcdaef", 6},

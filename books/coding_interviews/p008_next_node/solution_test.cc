@@ -12,7 +12,7 @@ bool nodeEqual(BinaryTreeNode* node, int val) {
     return node == nullptr ? val == -1 : node->Value == val;
 }
 
-TEST(p008, TestGetNext) {
+TEST(codingInterviews, TestGetNext) {
     CVal nodes[] = {{1, 0}, {2, -1}, {4, -1}, {7, 0}, {9, 2},
                     {3, 2}, {5, -1}, {6, 1},  {8, -1}};
 

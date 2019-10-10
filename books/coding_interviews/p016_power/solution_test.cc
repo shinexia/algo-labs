@@ -11,7 +11,7 @@ struct Case {
 
 #define inf (__builtin_inf())
 
-TEST(p016, TestPower) {
+TEST(codingInterviews, TestPower) {
     Case cases[] = {
         {0, 0, 1},  {0.0, -10, inf}, {0.0, 10, 0}, {1, 0, 1},
         {-1, 0, 1}, {-1, 1, -1},     {-1, 2, 1},   {-2, 0, 1},

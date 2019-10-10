@@ -1,7 +1,7 @@
 #include "solution.h"
 #include "gtest/gtest.h"
 
-TEST(p041, TestDynamicArray) {
+TEST(codingInterviews, TestDynamicArray) {
     DynamicArray<int> data;
     data.Insert(10);
     EXPECT_DOUBLE_EQ(data.getMedian(), 10.0);

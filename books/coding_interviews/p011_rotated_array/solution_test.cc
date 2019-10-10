@@ -8,7 +8,7 @@ struct Case {
     int expect;
 };
 
-TEST(p011, TestMin) {
+TEST(codingInterviews, TestMin) {
     Case cases[] = {
         {{1}, 1, 1},
         {{2, 1}, 2, 1},

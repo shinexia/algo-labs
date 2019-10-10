@@ -10,7 +10,7 @@ struct Case {
     bool expect;
 };
 
-TEST(p004, TestFind) {
+TEST(codingInterviews, TestFind) {
     Case cases[] = {
         {{1, 2, 8, 9, 2, 4, 9, 12, 4, 7, 10, 13, 6, 8, 11, 15}, 4, 4, 7, true},
         {{1, 2, 8, 9, 2, 4, 9, 12, 4, 7, 10, 13, 6, 8, 11, 15}, 4, 4, 5, false},
