@@ -1,4 +1,4 @@
-package problems
+package workspace
 
 /*
  * @lc app=leetcode id=66 lang=golang

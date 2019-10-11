@@ -1,3 +1,5 @@
+package workspace
+
 /*
  * @lc app=leetcode id=31 lang=golang
  *
@@ -5,8 +7,8 @@
  */
 
 // @lc code=start
-func nextPermutation(nums []int)  {
-    
-}
-// @lc code=end
+func nextPermutation(nums []int) {
 
+}
+
+// @lc code=end
