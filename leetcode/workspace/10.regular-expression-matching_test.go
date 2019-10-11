@@ -8,6 +8,7 @@ func TestIsMatch(t *testing.T) {
 		p      string
 		expect bool
 	}{
+		{"", "a**", false},
 		{"abcd", "ab*c*d", true},
 		{"abce", "ab*c*d", false},
 		{"abcde", "ab*c*d", false},

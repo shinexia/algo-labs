@@ -39,10 +39,6 @@ func newMachine(p string) (start *treeNode, err error) {
 		i++
 		if i < N && pr[i] == '*' {
 			i++
-			if i < N && pr[i] == '*' {
-				err = fmt.Errorf("invalid pattern, i: %v, r: %v", i, r)
-				return
-			}
 			tail = append(tail, next)
 			for _, t := range tail {
 				t.Next = append(t.Next, next)
