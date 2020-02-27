@@ -7,6 +7,7 @@ package workspace
  */
 
 // @lc code=start
+
 func findKthNumber(n int, k int) int {
 	count := 0
 	for i := 1; i < 10; i++ {
@@ -35,6 +36,24 @@ func findKthNumber(n int, k int) int {
 		}
 	}
 	return 0
+}
+
+func findKthNumber0(n int, k int) int {
+	base := 1
+	base1 := 10
+	count := 0
+	for n >= base1 {
+		count += base
+		base = base1
+		base1 *= 10
+	}
+	bk := base * k
+	if n >= bk+base {
+		count += base
+	} else if n >= bk {
+		count += n - bk + 1
+	}
+	return count
 }
 
 // @lc code=end
