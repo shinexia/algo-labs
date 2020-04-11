@@ -8,7 +8,7 @@
 namespace mylib {
 
 #define NULL_INT int32_t(0x80000000)
-#define NULL_INT_NAME "NULL_INT"
+#define NULL_INT_NAME "NULL"
 
 struct BinaryTreeNode {
     int Value;
