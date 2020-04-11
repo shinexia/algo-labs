@@ -30,3 +30,20 @@ func ListNodeToArray(head *ListNode) (nums []int) {
 	}
 	return
 }
+
+func arrayEquals(a, b []int) bool {
+	an := len(a)
+	bn := len(b)
+	if an != bn {
+		return false
+	}
+	if an == 0 {
+		return bn == 0
+	}
+	for i, x := range a {
+		if x != b[i] {
+			return false
+		}
+	}
+	return true
+}
