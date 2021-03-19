@@ -48,7 +48,6 @@ go tool cover -html=cover.out
 
 VS Code with CMAKE
 
-![vscode-cmake](docs/screenshot.png)
 
 ## LICENSE
 
