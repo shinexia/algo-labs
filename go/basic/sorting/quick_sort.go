@@ -1,15 +1,13 @@
 package sorting
 
+
 func QuickSort(a []int) {
 	quickSort(a, 0, len(a)-1)
 }
 
 func quickSort(data []int, start, end int) {
-	if start >= end {
-		return
-	}
-	if start+1 == end {
-		if data[start] > data[end] {
+	if start+1 >= end {
+		if start + 1 == end && data[start] > data[end] {
 			swap(data, start, end)
 		}
 		return
@@ -19,33 +17,23 @@ func quickSort(data []int, start, end int) {
 	quickSort(data, mid+1, end)
 }
 
-func partition(data []int, start, end int) int {
-	var (
-		m     = int(uint(start+end) >> 1)
-		pivot = data[m]
-		i     = start + 1
-		j     = end
-	)
-	swap(data, start, m)
-	for {
-		for ; i < j && data[j] >= pivot; j-- { // data[j] < pivot
-		}
-		for ; i < j && data[i] < pivot; i++ { // data[i] >= pivot
-		}
-		if i >= j {
-			break
-		}
-		// data[i] < pivot, data[j] >= pivot
-		swap(data, i, j)
-		i++
-		j--
-	}
-	if data[j] >= pivot {
-		j--
-		if j == start {
-			return start
-		}
-	}
-	swap(data, start, j)
-	return j
+func partition(nums []int, start, end int) int {
+	mid := int(uint(start + end) >> 1)
+	nums[start], nums[mid] = nums[mid], nums[start]
+	p := nums[start]
+    i, j := start + 1, end
+    for {
+		for ;nums[i] < p && i < j; i++ {}
+		for ;nums[j] >= p && i <= j; j-- {}
+        if i >= j {
+            break
+        }
+        nums[i], nums[j] = nums[j], nums[i]
+        i++
+        j--
+    }
+    if start < j {
+        nums[start], nums[j] = nums[j], nums[start]
+    }
+    return j
 }

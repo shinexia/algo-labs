@@ -8,7 +8,7 @@
 namespace mylib {
 
 template <typename T>
-inline void qsort_swap(T& nums, int a, int b) {
+inline void array_swap(T& nums, int a, int b) {
     auto t = nums[a];
     nums[a] = std::move(nums[b]);
     nums[b] = std::move(t);
@@ -18,43 +18,39 @@ inline void qsort_swap(T& nums, int a, int b) {
 // 如果用迭代器, nums[i] 改为 *(nums + i)
 template <typename T>
 int GenericPartition(T& nums, int start, int end) {
-    if (start + 1 >= end) {
-        if (start + 1 == end && !(nums[start] < nums[end])) {
-            qsort_swap(nums, start, end);
-        }
-        return start;
-    }
     int mid = int(uint32_t(start + end) >> 1);
-    qsort_swap(nums, start, mid);
-    // pivot是引用，swap后会被修改
-    auto& pivot = nums[start];
-    int p1 = start + 1, p2 = end;
-    while (p1 < p2) {
-        // nums[p2] < pivot 或者 p2 = p1
-        for (; p1 < p2 && !(nums[p2] < pivot); --p2) {
+    array_swap(nums, start, mid);
+    auto const& pivot = nums[start];
+    int i = start + 1, j = end;
+    while (1) {
+        for (; nums[i] < pivot && i < j; ++i) {
         }
-        // nums[p1] >= pivot 或者 p1 = p2
-        for (; p1 < p2 && nums[p1] < pivot; ++p1) {
+        for (; nums[j] >= pivot && i <= j; --j) {
         }
-        if (p1 >= p2) {
+        if (i >= j) {
             break;
         }
-        qsort_swap(nums, p1, p2);
-        ++p1;
-        --p2;
+        array_swap(nums, i, j);
+        ++i;
+        --j;
     }
-    if (!(nums[p2] < pivot)) {
-        --p2;
-        if (p2 == start) {
-            // while没有发生过swap, 且为充要条件
-            //   p2 只能是start+1(全部大于等于pivot)或者end(全部小于pivot)
-            //   因: nums[p2] >= pivot, 因此p2只能等于start+1
-            return start;
+    if (j > start) {
+        array_swap(nums, j, start);
+    }
+    return j;
+}
+
+template <typename T>
+static void GenericQuickSort(T& nums, int start, int end) {
+    if (start + 1 >= end) {
+        if (start + 1 == end && nums[start] > nums[end]) {
+            array_swap(nums, start, end);
         }
-        // else: while中发生过swap，则必定nums[p2-1] < pivot
+        return;
     }
-    qsort_swap(nums, p2, start);
-    return p2;
+    int mid = GenericPartition<T>(nums, start, end);
+    GenericQuickSort(nums, start, mid - 1);
+    GenericQuickSort(nums, mid + 1, end);
 }
 
 int Partition(int* nums, int start, int end);
