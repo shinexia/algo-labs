@@ -51,4 +51,4 @@ VS Code with CMAKE
 
 ## LICENSE
 
-<https://github.com/shinexia/algorithm-labs/blob/master/LICENSE>
+[MIT License](LICENSE)
