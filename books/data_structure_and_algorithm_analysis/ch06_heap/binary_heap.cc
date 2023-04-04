@@ -27,17 +27,17 @@ void Insert(ElementType X, PriorityQueue H) {
 }
 
 ElementType DeleteMin(PriorityQueue H) {
-
+    return 0;
 }
 
 ElementType FindMin(PriorityQueue H) {
-
+    return 0;
 }
 
 int IsEmpty(PriorityQueue H) {
-
+    return 0;
 }
 
 int IsFull(PriorityQueue H) {
-
+    return 0;
 }
