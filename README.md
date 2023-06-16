@@ -22,11 +22,11 @@ ninja
 ninja ExperimentalMemCheck
 ```
 
-Ninja中的`N`一定要大写, vscode -> cmake generator 配置时也要注意首字母大写
+Ninja 中的`N`一定要大写，vscode -> cmake generator 配置时也要注意首字母大写
 
-或者在vscode cmake outline中右键`ExperimentalMemCheck`执行。
+或者在 vscode cmake outline 中右键`ExperimentalMemCheck`执行。
 
-`Ninja` 失败的话，可以用Makefile
+`Ninja` 失败的话，可以用 Makefile
 
 ```bash
 mkdir build && cd build
@@ -47,7 +47,6 @@ go tool cover -html=cover.out
 ## Editor
 
 VS Code with CMAKE
-
 
 ## LICENSE
 

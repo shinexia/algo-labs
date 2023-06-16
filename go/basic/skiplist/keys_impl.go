@@ -8,9 +8,9 @@ func NewInt(i int) (a Int) {
 }
 
 func (i Int) Compare(j interface{}) int {
-	switch j.(type) {
+	switch v := j.(type) {
 	case Int:
-		return int(i) - int(j.(Int))
+		return int(i) - int(v)
 	default:
 		panic("invalid j type")
 	}

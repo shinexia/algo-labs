@@ -1,8 +1,8 @@
 package copy_on_write_map
 
 import (
-	"sync/atomic"
 	"sync"
+	"sync/atomic"
 )
 
 // CopyOnWriteMap 写时加锁，适用于读多写少的场景

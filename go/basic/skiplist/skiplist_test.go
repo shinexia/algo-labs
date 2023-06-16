@@ -1,8 +1,8 @@
 package skiplist
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 )
 
 type expect struct {
-	s     []pair // 链表全部的kv结构
-	r     interface{} // op操作的结果
+	s     []pair      // 链表全部的 kv 结构
+	r     interface{} // op 操作的结果
 	key   interface{} // key
-	value interface{} // 上面的key对应的value应该与此相同
+	value interface{} // 上面的 key 对应的 value 应该与此相同
 }
 
 type pair struct {
@@ -54,7 +54,7 @@ func TestSkipList(t *testing.T) {
 		{op: op_nothing, expect: expect{s: nil, key: nil, value: nil}},
 		{op: op_put, key: 0, value: 2, expect: expect{s: []pair{{0, 2}}, r: nil, key: 0, value: 2}},
 		{op: op_put, key: nil, value: 3, expect: expect{s: []pair{{0, 2}, {nil, 3}}, r: nil, key: nil, value: 3}},
-		{op: op_put, key: 0, value: 4, expect: expect{s: []pair{{0, 4}, {nil, 3}}, r: 2,  key: 0, value: 4}},
+		{op: op_put, key: 0, value: 4, expect: expect{s: []pair{{0, 4}, {nil, 3}}, r: 2, key: 0, value: 4}},
 		{op: op_nothing, expect: expect{s: []pair{{0, 4}, {nil, 3}}, key: 1, value: nil}},
 		{op: op_remove, key: 1, expect: expect{s: []pair{{0, 4}, {nil, 3}}, r: false, key: 1, value: nil}},
 		{op: op_remove, key: 0, expect: expect{s: []pair{{nil, 3}}, r: true, key: 0, value: nil}},

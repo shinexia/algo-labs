@@ -1,14 +1,12 @@
 package consistent_hash
 
-
 type Node interface {
 
-	// 唯一标识，用于判断两个节点是否相等，以及生成hash
+	// 唯一标识，用于判断两个节点是否相等，以及生成 hash
 	Id() string
 
 	// 权重
 	Weight() int
-
 }
 
 type nodeImpl struct {

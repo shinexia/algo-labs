@@ -14,8 +14,8 @@ func RadixSort(a []int) {
 		count = [BASE]int{} //计数器
 		radix = 1
 	)
-	for i := 0; i < d; i++ { //进行d次排序
-		for j := 0; j < BASE; j ++ {
+	for i := 0; i < d; i++ { //进行 d 次排序
+		for j := 0; j < BASE; j++ {
 			count[j] = 0 //每次分配前清空计数器
 		}
 		for j := 0; j < n; j++ {
@@ -24,16 +24,16 @@ func RadixSort(a []int) {
 		}
 		fmt.Println("before", count)
 		for j := 1; j < BASE; j++ {
-			count[j] += count[j-1] //将tmp中的位置依次分配给每个桶
+			count[j] += count[j-1] //将 tmp 中的位置依次分配给每个桶
 		}
 		fmt.Println("after", count)
 		fmt.Println(a, tmp)
-		for j := n - 1; j >= 0; j-- { //将所有桶中记录依次收集到tmp中
+		for j := n - 1; j >= 0; j-- { //将所有桶中记录依次收集到 tmp 中
 			k := (a[j] / radix) % BASE
 			tmp[count[k]-1] = a[j]
 			count[k]--
 		}
-		for j := 0; j < n; j++ { //将临时数组的内容复制到a中
+		for j := 0; j < n; j++ { //将临时数组的内容复制到 a 中
 			a[j] = tmp[j]
 		}
 		radix *= BASE

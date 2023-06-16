@@ -1,16 +1,16 @@
 package consistent_hash
 
 import (
-	"testing"
-	"math/rand"
 	"fmt"
 	"log"
+	"math/rand"
+	"testing"
 )
 
 func TestConsistentHash_AddNode(t *testing.T) {
 	c := New(255)
 	nodes := make([]Node, 10)
-	for i := 0; i<len(nodes); i++ {
+	for i := 0; i < len(nodes); i++ {
 		nodes[i] = NewNode(fmt.Sprintf("Node%02d", i))
 	}
 	c.Add(nodes...)
@@ -34,10 +34,10 @@ func TestConsistentHash_AddNode(t *testing.T) {
 		for _, s := range servers {
 			total += float64(s)
 		}
-		for i := 0; i<len(nodes); i++ {
+		for i := 0; i < len(nodes); i++ {
 			key := nodes[i].Id()
 			count := servers[key]
-			log.Printf("%v - %.3f of %.2f", key, float64(count) / total, 1.0 / float64(len(nodes)))
+			log.Printf("%v - %.3f of %.2f", key, float64(count)/total, 1.0/float64(len(nodes)))
 		}
 	}
 

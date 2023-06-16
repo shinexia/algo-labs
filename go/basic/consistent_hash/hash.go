@@ -1,10 +1,10 @@
 package consistent_hash
 
 import (
-	"sync"
+	"fmt"
 	"sort"
 	"strconv"
-	"fmt"
+	"sync"
 )
 
 type uints []uint32
@@ -26,18 +26,18 @@ func (x uints) Swap(i, j int) {
 }
 
 type ConsistentHash struct {
-	replica int // 虚拟节点数
+	replica      int // 虚拟节点数
 	sortedHashes uints
-	circle map[uint32]string // 将sortedHashes中hash值映射到具体的节点的ID
-	members map[string]Node // 所有节点
-	count int
+	circle       map[uint32]string // 将 sortedHashes 中 hash 值映射到具体的节点的 ID
+	members      map[string]Node   // 所有节点
+	count        int
 	sync.RWMutex
 }
 
 func New(replica int) *ConsistentHash {
 	return &ConsistentHash{
 		replica: replica,
-		circle: make(map[uint32]string, 0),
+		circle:  make(map[uint32]string, 0),
 		members: make(map[string]Node, 0),
 	}
 }
@@ -55,12 +55,12 @@ func (c *ConsistentHash) String() string {
 		c.replica, len(c.sortedHashes), len(c.circle), len(c.members), c.count)
 }
 
-func (c *ConsistentHash) Add(nodes... Node) {
+func (c *ConsistentHash) Add(nodes ...Node) {
 	c.Lock()
 	defer c.Unlock()
 	for _, node := range nodes {
 		nodeId := node.Id()
-		for i := 0; i< c.replica; i++ {
+		for i := 0; i < c.replica; i++ {
 			h := nodeHashFunc(nodeId, i)
 			c.circle[h] = nodeId
 		}
@@ -70,12 +70,12 @@ func (c *ConsistentHash) Add(nodes... Node) {
 	c.updateSortedHashes()
 }
 
-func (c *ConsistentHash) Remove(nodes... Node) {
+func (c *ConsistentHash) Remove(nodes ...Node) {
 	c.Lock()
 	defer c.Unlock()
 	for _, node := range nodes {
 		nodeId := node.Id()
-		for i := 0; i< c.replica; i++ {
+		for i := 0; i < c.replica; i++ {
 			h := nodeHashFunc(nodeId, i)
 			delete(c.circle, h)
 		}
@@ -147,7 +147,7 @@ func (c *ConsistentHash) PickN(key string, n int) (res []Node) {
 
 func (c *ConsistentHash) updateSortedHashes() {
 	var hashes uints
-	if m, n := cap(c.sortedHashes), len(c.circle); m / 4 > n || m < n {
+	if m, n := cap(c.sortedHashes), len(c.circle); m/4 > n || m < n {
 		// reallocate
 		hashes = make(uints, n)
 	} else {

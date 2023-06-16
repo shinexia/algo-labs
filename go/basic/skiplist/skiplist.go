@@ -1,12 +1,12 @@
 package skiplist
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
-	"fmt"
 )
 
-// Key 需要支持nil
+// Key 需要支持 nil
 type Key interface {
 	Compare(other interface{}) int
 }
@@ -51,9 +51,9 @@ func (n *node) String() string {
 // SkipList 跳表
 type SkipList struct {
 	maxLevel int
-	level    int // 取值范围[0, maxLevel], forwards size = level, 0 表示无
+	level    int // 取值范围 [0, maxLevel], forwards size = level, 0 表示无
 	randg    *rand.Rand
-	header   *node // header 不保存数据，key为nil时排在最右
+	header   *node // header 不保存数据，key 为 nil 时排在最右
 }
 
 // New 新建跳表
@@ -71,7 +71,7 @@ func NewM(maxLevel int) (s *SkipList) {
 	return
 }
 
-// Find 查找key对应的值
+// Find 查找 key 对应的值
 func (l *SkipList) Find(key Key) Value {
 	var p, q *node = l.header, nil
 	for i := l.level - 1; i >= 0; i-- {
@@ -102,7 +102,7 @@ func (l *SkipList) Put(key Key, value Value) (old Value) {
 	}
 	k := l.randomLevel()
 	if k > l.level {
-		for i := l.level; i < k; i ++ {
+		for i := l.level; i < k; i++ {
 			updates = append(updates, l.header)
 		}
 		l.level = k
@@ -116,7 +116,7 @@ func (l *SkipList) Put(key Key, value Value) (old Value) {
 	return
 }
 
-// Remove 删除key
+// Remove 删除 key
 func (l *SkipList) Remove(key Key) bool {
 	prevList := make([]*node, l.level)
 	var p, q, r *node = l.header, nil, l.header
@@ -162,7 +162,7 @@ func (l *SkipList) String() string {
 	return fmt.Sprintf("SkipList(maxLevel=%d, level=%d, nodes=%s)", l.maxLevel, l.level, nodes)
 }
 
-// 随机一个level: [1, l.maxLevel]
+// 随机一个 level: [1, l.maxLevel]
 func (l *SkipList) randomLevel() int {
 	return l.randg.Intn(l.maxLevel) + 1
 }
@@ -179,8 +179,8 @@ func (l *SkipList) Inspect(fn func(i int, key Key, value Value) bool) {
 	}
 }
 
-// 防止a或b为nil
-// key == nil 时，排在链表的最右边，header不保存数据
+// 防止 a 或 b 为 nil
+// key == nil 时，排在链表的最右边，header 不保存数据
 func compareHelp(a, b Key) int {
 	if a == b {
 		return 0

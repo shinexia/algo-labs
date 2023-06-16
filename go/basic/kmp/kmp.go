@@ -25,7 +25,7 @@ func kmpMatch(s, p string) int {
 	return -1
 }
 
-// 这是一个递归，由[0, i]的值，推导i+1的值，初始值next[0] = -1
+// 这是一个递归，由 [0, i] 的值，推导 i+1 的值，初始值 next[0] = -1
 func kmpPartialMatchTable(pb []byte) []int {
 	next := make([]int, len(pb))
 	next[0] = -1
@@ -33,7 +33,7 @@ func kmpPartialMatchTable(pb []byte) []int {
 		i = 1
 		k = 0
 	)
-	for i < len(pb) - 1 {
+	for i < len(pb)-1 {
 		if k == -1 || pb[i] == pb[k] {
 			i++
 			k++

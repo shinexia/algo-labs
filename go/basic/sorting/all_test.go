@@ -45,9 +45,7 @@ func benchmarkSorting(fn sorter, b *testing.B) {
 
 func clone(a []int) []int {
 	b := make([]int, len(a))
-	for i, n := range a {
-		b[i] = n
-	}
+	copy(b, a)
 	return b
 }
 
