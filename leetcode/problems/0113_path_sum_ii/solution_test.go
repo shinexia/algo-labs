@@ -3,7 +3,7 @@ package _113_path_sum_ii
 import (
 	"testing"
 
-	"github.com/shinexia/algorithm-labs/leetcode/lib"
+	"github.com/shinexia/algolabs/leetcode/lib"
 )
 
 func TestPathSum(t *testing.T) {

@@ -1,6 +1,5 @@
 package sorting
 
-
 func MergeSort(A []int) {
 	a := A
 	N := len(a)
@@ -9,14 +8,14 @@ func MergeSort(A []int) {
 	for seg = 1; seg < N; seg += seg {
 		for start = 0; start < N; start += seg + seg {
 			var (
-				low = start
-				mid = min(start + seg, N)
-				high = min(start + seg + seg, N)
-				k = low
+				low    = start
+				mid    = min(start+seg, N)
+				high   = min(start+seg+seg, N)
+				k      = low
 				start1 = low
-				end1= mid
+				end1   = mid
 				start2 = mid
-				end2 = high
+				end2   = high
 			)
 			for start1 < end1 && start2 < end2 {
 				if a[start1] < a[start2] {

@@ -1,6 +1,5 @@
 package sorting
 
-
 func BucketSort(a []int) {
 	N := len(a)
 	if N < 2 {
@@ -18,8 +17,8 @@ func BucketSort(a []int) {
 		}
 	}
 	step := 10
-	bucketNum := max / step - min/step + 1
-	buck := make([][]int , bucketNum)
+	bucketNum := max/step - min/step + 1
+	buck := make([][]int, bucketNum)
 
 	// create bucket
 	for i := 0; i < bucketNum; i++ {
@@ -33,7 +32,7 @@ func BucketSort(a []int) {
 	}
 
 	var index int
-	for i := 0; i< bucketNum; i++ {
+	for i := 0; i < bucketNum; i++ {
 		bucket := buck[i]
 		InsertSort(bucket)
 		for _, k := range bucket {
@@ -46,4 +45,3 @@ func BucketSort(a []int) {
 func indexFor(a, min, step int) int {
 	return (a - min) / step
 }
-

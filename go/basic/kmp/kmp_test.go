@@ -1,15 +1,15 @@
 package kmp
 
 import (
-	"testing"
 	"reflect"
+	"testing"
 )
 
 func TestKmpPartialMatchTable(t *testing.T) {
-	cases := []struct{
-		p string
+	cases := []struct {
+		p      string
 		expect []int
-	} {
+	}{
 		{p: "ABCDABD", expect: []int{-1, 0, 0, 0, 0, 1, 2}},
 	}
 	for _, c := range cases {

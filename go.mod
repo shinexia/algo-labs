@@ -1,3 +1,3 @@
-module github.com/shinexia/algorithm-labs
+module github.com/shinexia/algolabs
 
-go 1.12
+go 1.20

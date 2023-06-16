@@ -15,9 +15,9 @@ func CountingSort(a []int) {
 			min = x
 		}
 	}
-	b := make([]int, max - min + 1)
+	b := make([]int, max-min+1)
 	for _, x := range a {
-		b[x - min]++
+		b[x-min]++
 	}
 	var i int
 	for x, c := range b {
