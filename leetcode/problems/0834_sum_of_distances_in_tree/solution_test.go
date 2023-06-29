@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/shinexia/algolabs/leetcode/lib"
+	"github.com/shinexia/algo-labs/leetcode/lib"
 )
 
 type TestCase struct {

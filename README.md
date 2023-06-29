@@ -1,4 +1,4 @@
-# algolabs
+# algo-labs
 
 Most used: go and c++
 

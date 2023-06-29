@@ -1,7 +1,7 @@
 package _113_path_sum_ii
 
 import (
-	"github.com/shinexia/algolabs/leetcode/lib"
+	"github.com/shinexia/algo-labs/leetcode/lib"
 )
 
 type TreeNode = lib.TreeNode
